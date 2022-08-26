@@ -5,7 +5,7 @@ import cors from 'cors';
 import express from 'express';
 import ErrorHandler from './shared/errors/ErrorHandler';
 import { errors } from 'celebrate';
-import { routes } from './Routes';
+import  routes from './modules/routes/Routes';
 
 const app = express();
 

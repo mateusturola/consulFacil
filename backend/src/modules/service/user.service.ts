@@ -24,7 +24,10 @@ export class UserService {
       },
     });
 
-    return user;
+    return {
+      name: user.name,
+      email: user.email
+    };
   }
 
   async login(email: string, password: string) {

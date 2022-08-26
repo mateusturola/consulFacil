@@ -19,6 +19,6 @@ export class UserController {
 
     const token = await userService.login(email, password);
 
-    return res.status(StatusCodes.OK).json({message: token})
+    return res.status(StatusCodes.OK).json({token})
   }
 }

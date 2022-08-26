@@ -18,4 +18,12 @@ export class InvoiceController {
 
         return res.status(StatusCodes.OK).json(invoices);
     }
+
+    async getByFilter(req: Request, res: Response): Promise<Response> {
+        const invoiceService = new InvoiceService();
+
+        const invoices = await invoiceService.getByFilter(req.query);
+
+        return res.status(StatusCodes.OK).json(invoices);
+    }
 }

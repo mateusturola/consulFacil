@@ -1,5 +1,6 @@
 import { prismaClient } from '../database/prismaClient';
 import AppError from '../../shared/errors/AppError';
+import IFilter from '../../shared/InterFace/IFilter';
 
 export class InvoiceService {
     async create(invoice: any): Promise<any> {
@@ -39,8 +40,7 @@ export class InvoiceService {
         return invoiceCreated;
     }
 
-    async getAll()
-    {
+    async getAll(){
         const invoices = await prismaClient.invoices.findMany({
             select: {
                 id: true,
@@ -56,6 +56,43 @@ export class InvoiceService {
         });
 
         if (!invoices) throw new AppError('Nenhuma fatura encontrada', 404);
+
+        return invoices;
+    }
+
+    async getByFilter(filter: any){
+
+        const filterParams: IFilter = {} as IFilter;
+        if(filter.patient) {
+            filterParams.patient = {
+                name: filter.patient,
+            }
+        }
+
+        if(filter.finalDate) {
+            filterParams.date = {
+                gte: filter.initialDate ? new Date(filter.initialDate) : new Date(),
+                lte: new Date(filter.finalDate),
+            }
+        }
+
+        const invoices = await prismaClient.invoices.findMany({
+            where: filterParams,
+            select: {
+                id: true,
+                patient: {
+                    select: {
+                        name: true,
+                    },
+                },
+                amount: true,
+                date: true,
+                paid: true,
+            },
+        });
+
+
+        if (invoices.length === 0) throw new AppError('Nenhuma fatura encontrada', 404);
 
         return invoices;
     }

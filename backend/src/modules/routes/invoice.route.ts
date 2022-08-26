@@ -11,6 +11,7 @@ const validation = new TokenValidation();
 
 
 routesInvoice.get("/", invoiceController.getAll);
+routesInvoice.get("/filter", invoiceController.getByFilter);
 routesInvoice.post("/", invoiceValidator, invoiceController.create);
 
 export default routesInvoice;

@@ -5,6 +5,7 @@ import status from '../utils/StatusCode';
 export default (err: Error, _request: Request, response: Response, _next: NextFunction) => {
   if (err instanceof AppError) {
     return response.status(err.statusCode).json({
+      error: true,
       status: err.statusCode || 400,
       message: err.message,
     });

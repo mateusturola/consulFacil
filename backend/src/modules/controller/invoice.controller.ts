@@ -3,6 +3,14 @@ import { StatusCodes } from 'http-status-codes';
 import { InvoiceService } from '../service/invoice.service';
 
 export class InvoiceController {
+    async create(req: Request, res: Response): Promise<Response> {
+        const invoiceService = new InvoiceService();
+
+        const invoice = await invoiceService.create(req.body);
+
+        return res.status(StatusCodes.CREATED).json(invoice);
+    }
+
     async getAll(req: Request, res: Response): Promise<Response> {
         const invoiceService = new InvoiceService();
 

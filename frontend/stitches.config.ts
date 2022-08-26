@@ -1,6 +1,5 @@
 import { createStitches } from '@stitches/react';
 
-
 export const {
   styled,
   css,
@@ -13,8 +12,15 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      gray400: 'gainsboro',
-      gray500: 'lightgray',
+      white: '#f1f1f1',
+      black: '#04161E',
+      gray400: '#f1f1f1',
+      gray600: '#4D4D4D',
+      gray800: '#303030',
+      primary: '#5A8392',
+      secondary: '#99B3BA',
+      highlight: '#134559',
+      error: '#cc2b27',
     },
   },
   media: {
@@ -24,5 +30,8 @@ export const {
   },
   utils: {
     marginX: (value: string) => ({ marginLeft: value, marginRight: value }),
+    marginY: (value: string) => ({ marginTop: value, marginBottom: value }),
+    paddingX: (value: string) => ({ paddingLeft: value, paddingRight: value }),
+    paddingY: (value: string) => ({ paddingTop: value, paddingBottom: value }),
   },
 });

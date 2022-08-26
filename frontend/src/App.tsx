@@ -1,12 +1,15 @@
+import InvoicesProvider from "./Context/InvoicesProvider";
 import Nav from "./Components/Nav";
 import AppRoutes from "./Page/Routes";
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <AppRoutes />
-    </div>
+    <InvoicesProvider>
+      <div className="App">
+        <Nav />
+        <AppRoutes />
+      </div>
+    </InvoicesProvider>
   );
 }
 

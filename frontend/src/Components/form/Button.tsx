@@ -2,30 +2,37 @@ import { ReactNode } from "react";
 import { styled } from "../../../stitches.config";
 
 type ButtonProps = {
-  children: ReactNode;
+  children: ReactNode,
+  style?: string,
 };
 
 const ButtonStyle = styled('button', {
   backgroundColor: '#5A8392',
-  color: 'white',
+  color: '#f1f1f1',
   padding: '20px 0',
   borderRadius: 4,
   fontSize: '18px',
   fontWeight:600,
   border: '0',
   textTransform: 'uppercase',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '11px',
 
   variants: {
-    color: {
+    style: {
       violet: {
         backgroundColor: 'blueviolet',
-        color: 'white',
+        color: '#f1f1f1',
         '&:hover': {
           backgroundColor: 'darkviolet',
         },
       },
-      gray: {
-        backgroundColor: 'gainsboro',
+      line: {
+        border: '2px solid #5A8392',
+        backgroundColor: '#f1f1f1',
+        color: '#5A8392',
         '&:hover': {
           backgroundColor: 'lightgray',
         },
@@ -34,9 +41,9 @@ const ButtonStyle = styled('button', {
   },
 });
 
-export const Button = ({children}: ButtonProps) => {
+export const Button = ({children, style}: ButtonProps) => {
   return (
-    <ButtonStyle>
+    <ButtonStyle style={style}>
       {children}
     </ButtonStyle>
   )

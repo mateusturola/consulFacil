@@ -1,7 +1,19 @@
-import useAxios from '../Hooks/useAxios';
-import InvoicesContext from '../Context/InvoicesContext';
+import useAxios from 'Hooks/useAxios';
+import InvoicesContext from 'Context/InvoicesContext';
 import { useContext, useEffect } from 'react';
-import InvoiceList from '../Components/InvoiceList';
+import InvoiceList from 'Components/InvoiceList';
+import Modal from 'Components/generic/Modal';
+import ToastDemo from 'Components/generic/Toast';
+import { Title } from 'Components/generic/Title';
+import { FilterArea } from 'Components/FilterArea';
+import { styled } from '../../stitches.config';
+
+const Main = styled('main', {
+  padding: '20px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '20px',
+})
 
 export default function Invoices() {
   const { setInvoices, setLoading } = useContext(InvoicesContext);
@@ -20,10 +32,10 @@ export default function Invoices() {
   } , [response, loading ]);
 
   return (
-    <div>
-      <h1>Invoices</h1>
-      <p>Soon...</p>
+    <Main>
+      <Title>Financeiro</Title>
+      <FilterArea />
       <InvoiceList />
-    </div>
+    </Main>
   );
 }

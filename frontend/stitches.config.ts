@@ -14,7 +14,7 @@ export const {
     colors: {
       white: '#f1f1f1',
       black: '#04161E',
-      gray400: '#f1f1f1',
+      gray400: '#f6f6f6',
       gray600: '#4D4D4D',
       gray800: '#303030',
       primary: '#5A8392',

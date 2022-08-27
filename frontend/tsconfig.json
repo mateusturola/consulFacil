@@ -16,6 +16,29 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "src",
+    "paths": {
+      "Components/*": [
+        "src/Components/*"
+      ],
+      "Context/*":[
+        "src/Context/*"
+      ],
+      "Helpers/*":[
+        "src/Helpers/*"
+      ],
+      "Hooks/*":[
+        "src/Hooks/*"
+      ],
+      "Page/*":[
+        "src/Page/*"
+      ],
+      "Types/*":[
+        "src/Types/*"
+      ],
+      "Style/*":[
+        "src/Style/*"
+      ],
+    },
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

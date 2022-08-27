@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { InvoiceContextType } from '../types/invoice';
 
 const initialState = {
   invoices: [],
@@ -9,6 +10,6 @@ const initialState = {
   setLoading: () => {},
 }
 
-const InvoicesContext = createContext({});
+const InvoicesContext = createContext<InvoiceContextType>(initialState);
 
 export default InvoicesContext;

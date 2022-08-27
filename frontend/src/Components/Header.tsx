@@ -6,7 +6,7 @@ import logo from "../img/logo.png"
 const HeaderStyle = styled('header', {
   display: 'flex',
   justifyContent: 'space-between',
-  padding: '20px',
+  padding: '30px',
   background: '#f1f1f1',
   boxShadow:
     '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',

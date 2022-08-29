@@ -15,15 +15,20 @@ const CardInvoice = styled('div', {
     flexDirection: 'column',
     justifyContent: 'space-between',
     color: 'black',
-    fontSize: '1.3rem',
+    fontSize: '1.0rem',
     background: 'white',
     borderRadius: '4px',
     padding: '20px',
-    gap: '30px',
+    gap: '10px',
+    border: '1px solid #e6e6e6',
+    '&:hover': {
+      background: '#e6e6e6',
+      border: '1px solid #cacaca',
+    },
 })
 
 const InvoiceCardHeader = styled('h2', {
-  fontSize: '1.5rem',
+  fontSize: '1.1rem',
   textAlign: 'center',
   color: '#134559',
   fontWeight: '600',

@@ -17,8 +17,6 @@ const IconButton = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   color: 'highlight',
-  backgroundColor: 'white',
-  boxShadow: `0 2px 10px ${'black'}`,
   '&:hover': { backgroundColor: 'secondary' },
   '&:focus': { boxShadow: `0 0 0 2px black` },
 });
@@ -29,7 +27,7 @@ export const Nav = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <IconButton aria-label="Menu Principal">
-            <HamburgerMenuIcon />
+            <HamburgerMenuIcon  width="35" height="35"/>
           </IconButton>
         </DropdownMenuTrigger>
 

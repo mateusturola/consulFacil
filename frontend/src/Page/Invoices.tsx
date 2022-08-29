@@ -2,17 +2,24 @@ import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
 import { useContext, useEffect } from 'react';
 import InvoiceList from 'Components/InvoiceList';
-import Modal from 'Components/generic/Modal';
-import ToastDemo from 'Components/generic/Toast';
 import { Title } from 'Components/generic/Title';
-import { FilterArea } from 'Components/FilterArea';
 import { styled } from '../../stitches.config';
+import ModalFilter from 'Components/ModalFilter';
+import { Button } from 'Components/form/Button';
 
 const Main = styled('main', {
   padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
+})
+
+const FlexLine = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '5px',
 })
 
 export default function Invoices() {
@@ -34,7 +41,10 @@ export default function Invoices() {
   return (
     <Main>
       <Title>Financeiro</Title>
-      <FilterArea />
+      <FlexLine>
+        <ModalFilter />
+        <Button style="line">Limpar Filtros</Button>
+      </FlexLine>
       <InvoiceList />
     </Main>
   );

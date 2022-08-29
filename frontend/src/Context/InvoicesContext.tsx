@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { InvoiceContextType } from '../types/invoice';
+import { InvoiceContextType } from 'Types/invoice';
 
 const initialState = {
   invoices: [],

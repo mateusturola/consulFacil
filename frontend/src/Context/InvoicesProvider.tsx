@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import PropTypes from 'prop-types';
 import { ReactNode, useState } from 'react';
-import { IInvoice } from '../types/invoice';
+import { IInvoice } from 'Types/invoice';
 import InvoicesContext from './InvoicesContext';
 
 type InvoicesProviderProps = {

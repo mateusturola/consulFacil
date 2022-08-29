@@ -1,9 +1,12 @@
 import { ReactNode } from "react";
 import { styled } from "../../../stitches.config";
+import { Slot } from '@radix-ui/react-slot';
+
 
 type ButtonProps = {
   children: ReactNode,
   style?: string,
+  OnClick?: () => void,
 };
 
 const ButtonStyle = styled('button', {
@@ -11,7 +14,7 @@ const ButtonStyle = styled('button', {
   color: '#f1f1f1',
   padding: '20px 0',
   borderRadius: 4,
-  fontSize: '18px',
+  fontSize: '15px',
   fontWeight:600,
   border: '0',
   textTransform: 'uppercase',
@@ -19,6 +22,7 @@ const ButtonStyle = styled('button', {
   alignItems: 'center',
   justifyContent: 'center',
   gap: '11px',
+  width: '100%',
 
   variants: {
     style: {
@@ -34,16 +38,17 @@ const ButtonStyle = styled('button', {
         backgroundColor: '#f1f1f1',
         color: '#5A8392',
         '&:hover': {
-          backgroundColor: 'lightgray',
+          backgroundColor: '#5A8392',
+          color: '#f1f1f1',
         },
       },
     },
   },
 });
 
-export const Button = ({children, style}: ButtonProps) => {
+export const Button = ({children, style, OnClick}: ButtonProps) => {
   return (
-    <ButtonStyle style={style}>
+    <ButtonStyle style={style} onClick={OnClick}>
       {children}
     </ButtonStyle>
   )

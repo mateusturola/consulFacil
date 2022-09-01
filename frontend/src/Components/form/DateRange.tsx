@@ -33,11 +33,11 @@ const DateInput = ({initialDateState, endDataState}) => {
   return (
     <FlexLine>
       <InputStyled
-        selected={initialDateState.startDate}
-        onChange={(date) => initialDateState.setStartDate(date)}
+        selected={initialDateState.initialDate}
+        onChange={(date) => initialDateState.setinitialDate(date)}
         selectsStart
         locale={ptBR}
-        startDate={initialDateState.startDate}
+        initialDate={initialDateState.initialDate}
         finalDate={initialDateState.finalDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
@@ -49,9 +49,9 @@ const DateInput = ({initialDateState, endDataState}) => {
         onChange={(date) => endDataState.setfinalDate(date)}
         selectsEnd
         locale={ptBR}
-        startDate={endDataState.startDate}
+        initialDate={endDataState.initialDate}
         finalDate={endDataState.finalDate}
-        minDate={endDataState.startDate}
+        minDate={endDataState.initialDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation

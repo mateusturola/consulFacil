@@ -71,7 +71,7 @@ const InvoicesFilter = () => {
   const { setFilteredInvoice, setLoading, invoices, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage } = useContext(InvoicesContext);
 
   const [patient, setPatient] = useState("");
-  const [startDate, setStartDate] = useState(null);
+  const [initialDate, setinitialDate] = useState(null);
   const [finalDate, setfinalDate] = useState(null);
 
   const { response, loading, error, sendData, setError } = useAxios({
@@ -81,7 +81,7 @@ const InvoicesFilter = () => {
       accept: '*/*',
       Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
     },
-    params: {patient, startDate, finalDate}
+    params: {patient, initialDate, finalDate}
   });
 
 
@@ -92,22 +92,25 @@ const InvoicesFilter = () => {
     setError('');
 
     setPatient("");
-    setStartDate(null);
+    setinitialDate(null);
     setfinalDate(null);
   };
 
   const handleSubmit = () => {
-    sendData();
     setDisableClearFilter();
     setError('');
+
+    if (initialDate > finalDate && finalDate !== null) {
+      alert('A data inicial deve ser menor que a data final');
+      return;
+    }
+
+    sendData();
 
   };
 
   useEffect(() => {
-    console.log(error);
     if (error) {
-      console.log('error');
-      console.log(error.response?.data.message);
       setErrorMessage(error.response?.data.message);
     } else {
       setFilteredInvoice(response?.data);
@@ -133,7 +136,7 @@ const InvoicesFilter = () => {
             value={patient}
             onChange={(e) => setPatient(e.target.value)}
           />
-          <DateInput initialDateState={{startDate, setStartDate}} endDataState={{finalDate, setfinalDate}}/>
+          <DateInput initialDateState={{initialDate, setinitialDate}} endDataState={{finalDate, setfinalDate}}/>
           <FlexLine>
         <Button OnClick={() => handleSubmit()} aria-label="Close">
           Enviar

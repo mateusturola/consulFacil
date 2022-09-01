@@ -61,18 +61,30 @@ export class InvoiceService {
     }
 
     async getByFilter(filter: any){
-
         const filterParams: IFilter = {} as IFilter;
+
         if(filter.patient) {
             filterParams.patient = {
                 name: filter.patient,
             }
         }
 
-        if(filter.finalDate) {
+        if(filter.finalDate && filter.initialDate) {
             filterParams.date = {
                 gte: filter.initialDate ? new Date(filter.initialDate) : new Date(),
                 lte: new Date(filter.finalDate),
+            }
+        }
+
+        if(filter.initialDate && !filter.finalDate) {
+            filterParams.date = {
+                gte: filter.initialDate,
+            }
+        }
+
+        if(filter.finalDate && !filter.initialDate) {
+            filterParams.date = {
+                lte: filter.finalDate,
             }
         }
 

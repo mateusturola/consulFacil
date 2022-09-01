@@ -23,11 +23,11 @@ const useAxios = (axiosParams: AxiosRequestConfig) => {
     fetchData(axiosParams);
   }
 
-  useEffect(() => {
-    if(axiosParams.method === "GET" || axiosParams.method === "get"){
-      fetchData(axiosParams);
-    }
-  },[]);
+  // useEffect(() => {
+  //   if(axiosParams.method === "GET" || axiosParams.method === "get"){
+  //     fetchData(axiosParams);
+  //   }
+  // },[]);
 
   return { response, error, loading, sendData };
 }

@@ -7,6 +7,7 @@ type ButtonProps = {
   children: ReactNode,
   style?: string,
   OnClick?: () => void,
+  disabled?: boolean,
 };
 
 const ButtonStyle = styled('button', {
@@ -23,6 +24,12 @@ const ButtonStyle = styled('button', {
   justifyContent: 'center',
   gap: '11px',
   width: '100%',
+
+  '&:disabled': {
+    opacity: 0.5,
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+  },
 
   variants: {
     style: {
@@ -41,14 +48,20 @@ const ButtonStyle = styled('button', {
           backgroundColor: '#5A8392',
           color: '#f1f1f1',
         },
+        '&:disabled': {
+          opacity: 0.5,
+          cursor: 'not-allowed',
+          pointerEvents: 'none',
+        },
       },
     },
   },
 });
 
-export const Button = ({children, style, OnClick}: ButtonProps) => {
+export const Button = ({children, style,  OnClick, disabled}: ButtonProps) => {
+  disabled = disabled || false;
   return (
-    <ButtonStyle style={style} onClick={OnClick}>
+    <ButtonStyle style={style} onClick={OnClick} type="button" disabled={disabled}>
       {children}
     </ButtonStyle>
   )

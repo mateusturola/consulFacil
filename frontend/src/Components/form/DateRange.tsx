@@ -9,53 +9,55 @@ registerLocale('pt-BR', ptBR);
 
 const InputStyled = styled(DatePicker, {
   all: 'unset',
-  flex: '1',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   borderRadius: 4,
   padding: '15px',
   fontSize: 17,
   lineHeight: 1,
   color: 'primary',
   boxShadow: `0 0 0 1px ${'black'}`,
-  width: '90%',
+  width: '80%',
 
   '&:focus': { boxShadow: `0 0 0 2px ${'highlight'}` },
 });
 
-const DateInput = () => {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+const FlexLine = styled('div', {
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '5px',
+})
+
+const DateInput = ({initialDateState, endDataState}) => {
 
   return (
-    <>
+    <FlexLine>
       <InputStyled
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        selected={initialDateState.startDate}
+        onChange={(date) => initialDateState.setStartDate(date)}
         selectsStart
         locale={ptBR}
-        startDate={startDate}
-        endDate={endDate}
+        startDate={initialDateState.startDate}
+        endDate={initialDateState.endDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation
         placeholderText="Data Inicial"
       />
       <InputStyled
-        selected={endDate}
-        onChange={(date) => setEndDate(date)}
+        selected={endDataState.endDate}
+        onChange={(date) => endDataState.setEndDate(date)}
         selectsEnd
         locale={ptBR}
-        startDate={startDate}
-        endDate={endDate}
-        minDate={startDate}
+        startDate={endDataState.startDate}
+        endDate={endDataState.endDate}
+        minDate={endDataState.startDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation
         placeholderText="Data final"
       />
-    </>
+    </FlexLine>
   );
   }
 

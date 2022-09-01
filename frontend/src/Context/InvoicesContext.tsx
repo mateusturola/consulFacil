@@ -8,6 +8,8 @@ const initialState = {
   setFilteredInvoice: () => {},
   loading: false,
   setLoading: () => {},
+  disableClearFilter: true,
+  setDisableClearFilter: () => {},
 }
 
 const InvoicesContext = createContext<InvoiceContextType>(initialState);

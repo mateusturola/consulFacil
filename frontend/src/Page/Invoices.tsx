@@ -4,8 +4,8 @@ import { useContext, useEffect } from 'react';
 import InvoiceList from 'Components/InvoiceList';
 import { Title } from 'Components/generic/Title';
 import { styled } from '../../stitches.config';
-import ModalFilter from 'Components/ModalFilter';
 import { Button } from 'Components/form/Button';
+import InvoicesFilter from 'Components/InvoicesFilter';
 
 const Main = styled('main', {
   padding: '20px',
@@ -14,13 +14,7 @@ const Main = styled('main', {
   gap: '20px',
 })
 
-const FlexLine = styled('div', {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  gap: '5px',
-})
+
 
 export default function Invoices() {
   const { setInvoices, setLoading } = useContext(InvoicesContext);
@@ -36,15 +30,13 @@ export default function Invoices() {
   useEffect(() => {
     setInvoices(response?.data);
     setLoading(loading);
+    sendData();
   } , [response, loading ]);
 
   return (
     <Main>
       <Title>Financeiro</Title>
-      <FlexLine>
-        <ModalFilter />
-        <Button style="line">Limpar Filtros</Button>
-      </FlexLine>
+      <InvoicesFilter />
       <InvoiceList />
     </Main>
   );

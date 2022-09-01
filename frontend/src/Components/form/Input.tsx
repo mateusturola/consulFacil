@@ -7,12 +7,13 @@ type InputProps = {
   id: string,
   name: string,
   placeholder: string,
+  value: string,
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
 };
 
 
 const InputStyled = styled('input', {
   all: 'unset',
-  flex: '1',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -27,8 +28,8 @@ const InputStyled = styled('input', {
   '&:focus': { boxShadow: `0 0 0 2px ${'highlight'}` },
 });
 
-const Input = ({text, id, placeholder}: InputProps) => (
-    <InputStyled type={text} id={id} placeholder={placeholder} />
+const Input = ({text, id, placeholder, value, onChange}: InputProps) => (
+    <InputStyled type={text} id={id} placeholder={placeholder}  value={value} onChange={onChange}/>
 );
 
 export default Input;

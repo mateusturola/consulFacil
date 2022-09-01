@@ -9,7 +9,7 @@ import  routes from './modules/routes/Routes';
 
 const app = express();
 
-const PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.APP_PORT || 3001;
 
 app.use(express.json({limit: '1kb'}));
 

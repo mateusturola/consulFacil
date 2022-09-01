@@ -29,7 +29,7 @@ const useAxios = (axiosParams: AxiosRequestConfig) => {
   //   }
   // },[]);
 
-  return { response, error, loading, sendData };
+  return { response, error, loading, sendData, setError };
 }
 
 export default useAxios;

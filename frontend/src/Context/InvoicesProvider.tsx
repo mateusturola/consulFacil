@@ -15,9 +15,9 @@ function InvoicesProvider({ children }: InvoicesProviderProps) {
   const [filteredInvoice, setFilteredInvoice] = useState<IInvoice[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [disableClearFilter, setDisableClearFilter] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
-  const contextValue = { invoices, setInvoices, filteredInvoice, setFilteredInvoice, loading, setLoading, error, setError, disableClearFilter, setDisableClearFilter };
+  const contextValue = { invoices, setInvoices, filteredInvoice, setFilteredInvoice, loading, setLoading, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage };
 
   return (
     <InvoicesContext.Provider value={contextValue}>

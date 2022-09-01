@@ -68,40 +68,53 @@ const FlexLine = styled('div', {
 })
 
 const InvoicesFilter = () => {
-  const { setFilteredInvoice, setLoading, filteredInvoice, invoices, disableClearFilter, setDisableClearFilter } = useContext(InvoicesContext);
+  const { setFilteredInvoice, setLoading, invoices, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage } = useContext(InvoicesContext);
 
   const [patient, setPatient] = useState("");
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [finalDate, setfinalDate] = useState(null);
 
-  const { response, loading, error, sendData } = useAxios({
+  const { response, loading, error, sendData, setError } = useAxios({
     method: "get",
     url: '/invoice/filter',
     headers: {
       accept: '*/*',
       Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
     },
-    params: {patient, startDate, endDate}
+    params: {patient, startDate, finalDate}
   });
 
 
   const clearForm = () => {
     setFilteredInvoice(invoices);
     setDisableClearFilter(true);
+    setErrorMessage('');
+    setError('');
+
     setPatient("");
     setStartDate(null);
-    setEndDate(null);
+    setfinalDate(null);
   };
 
   const handleSubmit = () => {
     sendData();
     setDisableClearFilter();
+    setError('');
+
   };
 
   useEffect(() => {
-    setFilteredInvoice(response?.data);
-    setLoading(loading);
-  } , [response, loading ]);
+    console.log(error);
+    if (error) {
+      console.log('error');
+      console.log(error.response?.data.message);
+      setErrorMessage(error.response?.data.message);
+    } else {
+      setFilteredInvoice(response?.data);
+      setErrorMessage('');
+      setLoading(loading);
+    }
+  } , [response, error, loading ]);
 
 
 
@@ -120,7 +133,7 @@ const InvoicesFilter = () => {
             value={patient}
             onChange={(e) => setPatient(e.target.value)}
           />
-          <DateInput initialDateState={{startDate, setStartDate}} endDataState={{endDate, setEndDate}}/>
+          <DateInput initialDateState={{startDate, setStartDate}} endDataState={{finalDate, setfinalDate}}/>
           <FlexLine>
         <Button OnClick={() => handleSubmit()} aria-label="Close">
           Enviar

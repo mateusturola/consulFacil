@@ -38,19 +38,19 @@ const DateInput = ({initialDateState, endDataState}) => {
         selectsStart
         locale={ptBR}
         startDate={initialDateState.startDate}
-        endDate={initialDateState.endDate}
+        finalDate={initialDateState.finalDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation
         placeholderText="Data Inicial"
       />
       <InputStyled
-        selected={endDataState.endDate}
-        onChange={(date) => endDataState.setEndDate(date)}
+        selected={endDataState.finalDate}
+        onChange={(date) => endDataState.setfinalDate(date)}
         selectsEnd
         locale={ptBR}
         startDate={endDataState.startDate}
-        endDate={endDataState.endDate}
+        finalDate={endDataState.finalDate}
         minDate={endDataState.startDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"

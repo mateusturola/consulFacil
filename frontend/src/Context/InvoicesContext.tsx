@@ -10,6 +10,8 @@ const initialState = {
   setLoading: () => {},
   disableClearFilter: true,
   setDisableClearFilter: () => {},
+  errorMessage: '',
+  setErrorMessage: () => {},
 }
 
 const InvoicesContext = createContext<InvoiceContextType>(initialState);

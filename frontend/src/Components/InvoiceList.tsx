@@ -3,9 +3,6 @@ import { useContext, useEffect } from "react";
 import { formatDate } from "../Helpers";
 import { styled } from "../../stitches.config";
 
-import IInvoice from "../Types/invoice";
-
-
 const InvoicesList =  styled('section', {
   display: 'flex',
   flexDirection: 'column',
@@ -49,14 +46,16 @@ const InvoiceCardLine = styled('div', {
 });
 
 export default function InvoiceList() {
-  const { invoices, filteredInvoice, loading } = useContext(InvoicesContext);
+  const { invoices, filteredInvoice, loading, errorMessage } = useContext(InvoicesContext);
 
   const invoiceList = filteredInvoice ? filteredInvoice : invoices;
 
   return (
     <InvoicesList className="invoice-list">
         {loading && <p>Loading...</p>}
-        { invoiceList && invoiceList.map(invoice => (
+        {errorMessage && <p>{errorMessage}</p>}
+
+        { !errorMessage && invoiceList && invoiceList.map((invoice) => (
               <CardInvoice key={invoice.id}>
                 <InvoiceCardHeader>{invoice.patient.name}</InvoiceCardHeader>
                 <InvoiceCardLine>

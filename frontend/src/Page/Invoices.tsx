@@ -6,6 +6,7 @@ import { Title } from 'Components/generic/Title';
 import { styled } from '../../stitches.config';
 import { Button } from 'Components/form/Button';
 import InvoicesFilter from 'Components/InvoicesFilter';
+import { SummaryInvoices } from 'Components/SummaryInvoices';
 
 const Main = styled('main', {
   padding: '20px',
@@ -31,12 +32,13 @@ export default function Invoices() {
     setInvoices(response?.data);
     setLoading(loading);
     sendData();
-  } , [response, loading ]);
+  } , [loading]);
 
   return (
     <Main>
       <Title>Financeiro</Title>
       <InvoicesFilter />
+      <SummaryInvoices />
       <InvoiceList />
     </Main>
   );

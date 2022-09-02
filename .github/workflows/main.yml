@@ -3,7 +3,7 @@ name: Deploy
 on:
   push:
     branches:
-      - master
+      - server
 
 jobs:
   build:
@@ -13,6 +13,6 @@ jobs:
       - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "consulfacil"
+          heroku_app_name: "consulfacilapi"
           heroku_email: "turolamateus@gmail.com"
           usedocker: true

@@ -12,6 +12,8 @@ RUN yarn install
 
 RUN yarn prisma generate
 
+RUN yarn prisma db seed
+
 COPY . .
 
 EXPOSE 3001

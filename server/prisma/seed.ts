@@ -5,12 +5,18 @@ async function createUser() {
   const hashedPassword = await argon2.hash('erica@odonto2022', { type: argon2.argon2d } );
 
 
-  await prismaClient.user.create({
-    data: {
+  await prismaClient.user.createMany({
+    data: [{
       name: 'Erica',
       email: 'erica.odonto@gmail.com',
       password: hashedPassword,
     },
+    {
+      name: 'Turola',
+      email: 'turola@gmail.com',
+      password: hashedPassword,
+    }],
+    skipDuplicates: true,
   });
 }
 

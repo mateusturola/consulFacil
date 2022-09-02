@@ -25,7 +25,8 @@
   "scripts": {
     "start": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts",
     "dev": "nodemon --watch 'src/' --exec 'ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/server.ts' -e ts",
-    "lint": "eslint --fix --ext .js,.ts ."
+    "lint": "eslint --fix --ext .js,.ts .",
+    "start": "yarn run dev yarn prisma generate"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",

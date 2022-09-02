@@ -1,13 +1,19 @@
-FROM node:14-alpine
+FROM node:alpine
 
 WORKDIR /usr/src/app
 
 COPY ./package.json ./
 
+COPY prisma ./prisma/
+
+COPY .env ./
+
 RUN yarn install
+
+RUN yarn prisma generate
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 3001
 
 CMD [ "yarn", "dev" ]

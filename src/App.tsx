@@ -5,8 +5,9 @@ import { Header } from "Components/Header";
 
 function App() {
   const globalStyles = globalCss({
-    '*': { margin: 0, padding: 0, boxSizing: 'content-box' },
-    'html': { background: '#f1f1f1', color: 'black' },
+    '*': { margin: 0, padding: 0, boxSizing: 'border-box' },
+    'input, textarea': { boxSizing: 'content-box' },
+    'html': { background: '#f6f6f6', color: 'black' },
     'h1': { fontSize: '3.2em', lineHeight: '1.1' },
   });
 

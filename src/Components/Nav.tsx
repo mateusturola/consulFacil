@@ -10,8 +10,8 @@ const Box = styled('div', {});
 const IconButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
-  height: 35,
-  width: 35,
+  height: 30,
+  width: 30,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',

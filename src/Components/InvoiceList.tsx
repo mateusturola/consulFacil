@@ -2,11 +2,14 @@ import InvoicesContext from "../Context/InvoicesContext";
 import { useContext, useEffect } from "react";
 import { formatDate } from "../Helpers";
 import { styled } from "../../stitches.config";
+import Loading from "./generic/Loading";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
   flexDirection: 'column',
   gap: '10px',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const CardInvoice = styled('div', {
@@ -20,6 +23,7 @@ const CardInvoice = styled('div', {
     padding: '20px',
     gap: '10px',
     border: '1px solid #e6e6e6',
+    width: '100%',
     '&:hover': {
       background: '#e6e6e6',
       border: '1px solid #cacaca',
@@ -52,7 +56,7 @@ export default function InvoiceList() {
 
   return (
     <InvoicesList className="invoice-list">
-        {loading && <p>Loading...</p>}
+        {loading && <Loading />}
         {errorMessage && <p>{errorMessage}</p>}
 
         { !errorMessage && invoiceList && invoiceList.map((invoice) => (

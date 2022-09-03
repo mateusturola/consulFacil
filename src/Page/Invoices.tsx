@@ -4,10 +4,8 @@ import { useContext, useEffect } from 'react';
 import InvoiceList from 'Components/InvoiceList';
 import { Title } from 'Components/generic/Title';
 import { styled } from '../../stitches.config';
-import { Button } from 'Components/form/Button';
-import InvoicesFilter from 'Components/InvoicesFilter';
 import { SummaryInvoices } from 'Components/SummaryInvoices';
-import InvoiceAdd from 'Components/InvoiceAdd';
+import InvoicesNav from 'Components/InvoiceNav';
 
 const Main = styled('main', {
   padding: '20px',
@@ -17,10 +15,9 @@ const Main = styled('main', {
 })
 
 
-
 export default function Invoices() {
-  const { setInvoices, setLoading } = useContext(InvoicesContext);
-  const { response, loading, error, sendData } = useAxios({
+  const { setInvoices, setLoading,} = useContext(InvoicesContext);
+  const { response, loading, sendData } = useAxios({
     method: "get",
     url: '/invoice',
     headers: {
@@ -35,11 +32,11 @@ export default function Invoices() {
     sendData();
   } , [loading]);
 
+
   return (
     <Main>
       <Title>Financeiro</Title>
-      <InvoicesFilter />
-      <InvoiceAdd />
+      <InvoicesNav />
       <SummaryInvoices />
       <InvoiceList />
     </Main>

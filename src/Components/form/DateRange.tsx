@@ -15,14 +15,14 @@ const InputStyled = styled(DatePicker, {
   lineHeight: 1,
   color: 'primary',
   boxShadow: `0 0 0 1px ${'black'}`,
-  width: '80%',
-
+  width: '100%',
+  
   '&:focus': { boxShadow: `0 0 0 2px ${'highlight'}` },
 });
 
 const FlexLine = styled('div', {
   display: 'flex',
-  flexDirection: 'row',
+  flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'center',
   gap: '5px',
@@ -32,7 +32,7 @@ const FlexLine = styled('div', {
 const DateInput = ({initialDateState, endDataState}: DateRangeProps) => {
 
   return (
-    <FlexLine>
+    <>
       <InputStyled
         placeholderText="Data Inicial"
         selected={initialDateState.inDate}
@@ -56,7 +56,7 @@ const DateInput = ({initialDateState, endDataState}: DateRangeProps) => {
         startDate={initialDateState.inDate}
         endDate={endDataState.inDate}
       />
-    </FlexLine>
+    </>
   );
   }
 

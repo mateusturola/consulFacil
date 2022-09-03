@@ -20,12 +20,13 @@ const Button = styled('button', {
   gap: '11px',
   width: '100%',
   border: '2px solid #134559',
-        backgroundColor: '#f1f1f1',
-        color: '#134559',
-        '&:hover': {
-          backgroundColor: '#134559',
-          color: '#f1f1f1',
-        },
+  backgroundColor: '#f1f1f1',
+  color: '#134559',
+  
+  '&:hover': {
+    backgroundColor: '#134559',
+    color: '#f1f1f1',
+  },
 
   variants: {
     color: {
@@ -134,7 +135,7 @@ const InvoiceAdd = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button> <PlusIconIcon /> Adicionar Cobrança</Button>
+        <Button > <PlusIconIcon /> Adicionar Cobrança</Button>
       </DialogTrigger>
       <DialogWrapper>
         <DialogContent>
@@ -172,7 +173,7 @@ const InvoiceAdd = () => {
               <Button onClick={() => handleSubmit()}>Salvar</Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button color="cancel">Cancelar</Button>
+              <Button color="line">Cancelar</Button>
             </DialogClose>
           </FlexButton>
           <DialogClose asChild>

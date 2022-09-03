@@ -1,1 +1,1 @@
-web: vite preview --port $PORT
+web: vite preview --port $PORT || 3000

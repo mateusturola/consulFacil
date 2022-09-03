@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  binaryTargets = ["linux-musl", "debian-openssl-3.0.x" ]
+  binaryTargets = ["linux-musl", "debian-openssl-3.0.x", "debian-openssl-1.1.x"]
 }
 
 datasource db {
@@ -24,7 +24,7 @@ model Invoices {
   id        Int       @id @default(autoincrement())
   patient   Patients  @relation(fields: [patientId], references: [id])
   patientId Int
-  amount    Int       @default(0)
+  amount    Float     @default(0.00)
   date      DateTime  @default(now())
   paid      Boolean   @default(false)
 

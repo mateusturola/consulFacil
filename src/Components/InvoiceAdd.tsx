@@ -1,9 +1,11 @@
-import { styled } from "@stitches/react";
-import { Cross2Icon } from '@radix-ui/react-icons';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogWrapper } from "./generic/Dialog";
+import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
+import { DialogText, Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogWrapper } from "./generic/Dialog";
 import Input from "./form/Input";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DataInput from "./form/DataInput";
+import { styled } from '../../stitches.config';
+import useAxios from 'Hooks/useAxios';
+import InvoicesContext from 'Context/InvoicesContext';
 
 
 const Button = styled('button', {
@@ -17,21 +19,59 @@ const Button = styled('button', {
   justifyContent: 'center',
   gap: '11px',
   width: '100%',
-  border: '2px solid #5A8392',
-  backgroundColor: '#f1f1f1',
-  color: '#5A8392',
-  '&:hover': {
-    backgroundColor: '#5A8392',
-    color: '#f1f1f1',
-  }
+  border: '2px solid #134559',
+        backgroundColor: '#f1f1f1',
+        color: '#134559',
+        '&:hover': {
+          backgroundColor: '#134559',
+          color: '#f1f1f1',
+        },
+
+  variants: {
+    color: {
+      cancel: {
+        border: '2px solid #5A8392',
+        backgroundColor: '#f1f1f1',
+        color: '#5A8392',
+
+        '&:hover': {
+          backgroundColor: '#5A8392',
+          color: '#f1f1f1',
+        },
+      },
+    },
+  },
+
 });
 
-const Flex = styled('div', { display: 'flex' });
+const FlexButton = styled('div', {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  flexDirection: 'column',
+  gap: '10px',
+  width: '100%',
+
+  '@bp2': {
+    flexDirection: 'row',
+  },
+});
+
+const Flex = styled('div', {
+  display: 'flex',
+  justifyContent: 'flex-end',
+  flexDirection: 'column',
+  gap: '10px',
+  width: '90%',
+
+  '@bp2': {
+    flexDirection: 'column',
+    width: '94%',
+  },
+});
 
 const IconButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
-  borderRadius: '100%',
   height: 25,
   width: 25,
   display: 'inline-flex',
@@ -41,66 +81,97 @@ const IconButton = styled('button', {
   position: 'absolute',
   top: 10,
   right: 10,
-
-  '&:hover': { backgroundColor: '#5A8392' },
-  '&:focus': { boxShadow: `0 0 0 2px #134559` },
 });
 
-const Fieldset = styled('fieldset', {
-  all: 'unset',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 5,
-  alignItems: 'center',
-  marginBottom: 15,
+const PlusIconIcon = styled(PlusIcon, {
+  height: '20px',
+  width: '20px',
 });
 
-const Label = styled('label', {
-  fontSize: 15,
-  color: '#303030',
-  textAlign: 'left',
-});
+
+
 
 const InvoiceAdd = () => {
   const [patient, setPatient] = useState("");
+  const [amount, setAmount] = useState("");
   const [date, setDate] = useState<any>(null);
+
+  const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
+
+  const { response, loading, error, sendData, setError } = useAxios({
+    method: "post",
+    url: '/invoice',
+    headers: {
+      accept: '*/*',
+      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
+    },
+    data: {patient, date, amount: parseInt(amount)}
+  });
+
+  const handleSubmit = () => {
+    setError('');
+    parseInt(amount)
+    sendData();
+
+    setPatient("");
+    setAmount("");
+    setDate(null);
+  };
+
+  useEffect(() => {
+    if (error) {
+      setErrorMessage(error.response?.data.message);
+    } else {
+      setFilteredInvoice(response?.data);
+      setErrorMessage('');
+      setLoading(loading);
+    }
+  } , [response, error, loading ]);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button cor="line">Adicionar Cobrança</Button>
+        <Button> <PlusIconIcon /> Adicionar Cobrança</Button>
       </DialogTrigger>
       <DialogWrapper>
-        <DialogContent >
-          <DialogTitle>Adicionar Cobrança</DialogTitle>
-          <DialogDescription>
-            Preencha os dadado abaixo para cadastar uma nova cobrança.
-          </DialogDescription>
-          <Fieldset>
-            <Label htmlFor="patientName">Paciente</Label>
-            <Input
-              type="text"
-              id="patientName"
-              name="patientName"
-              value={patient}
-              onChange={(e) => setPatient(e.target.value)}
-            />
-          </Fieldset>
-          <Fieldset>
-            <Label htmlFor="data">Data para pagamento</Label>
-            <DataInput
-              id="data"
-              dateState={{ date, setDate }}
-            />
-          </Fieldset>
-          <Flex css={{ marginTop: 25, justifyContent: 'flex-end', flexDirection: 'row', gap: '10px' }}>
+        <DialogContent>
+          <DialogText>
+            <DialogTitle>Adicionar Cobrança</DialogTitle>
+            <DialogDescription>
+              Preencha os dados abaixo para cadastar uma nova cobrança.
+            </DialogDescription>
+          </DialogText>
+            <Flex>
+              <Input
+                placeholder="Nome do Paciente"
+                type="text"
+                id="patientName"
+                name="patientName"
+                value={patient}
+                onChange={(e) => setPatient(e.target.value)}
+              />
+              <Input
+                placeholder="Valor"
+                type="text"
+                id="amount"
+                name="amount"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+              />
+              <DataInput
+                placeholder="Data para pagamento"
+                id="data"
+                dateState={{ date, setDate }}
+              />
+            </Flex>
+          <FlexButton>
             <DialogClose asChild>
-              <Button>Salvar</Button>
+              <Button onClick={() => handleSubmit()}>Salvar</Button>
             </DialogClose>
             <DialogClose asChild>
-              <Button>Cancelar</Button>
+              <Button color="cancel">Cancelar</Button>
             </DialogClose>
-          </Flex>
+          </FlexButton>
           <DialogClose asChild>
             <IconButton aria-label="Close">
               <Cross2Icon />

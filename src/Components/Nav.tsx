@@ -10,15 +10,13 @@ const Box = styled('div', {});
 const IconButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
-  borderRadius: '100%',
   height: 35,
   width: 35,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: 'highlight',
-  '&:hover': { backgroundColor: 'secondary' },
-  '&:focus': { boxShadow: `0 0 0 2px black` },
+  color: '#134559',
+  '&:hover': { color: '#134559' },
 });
 
 export const Nav = () => {

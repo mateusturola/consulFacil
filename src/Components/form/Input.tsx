@@ -14,18 +14,15 @@ type InputProps = {
 
 const InputStyled = styled('input', {
   all: 'unset',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   borderRadius: 4,
   padding: '15px',
   fontSize: 17,
   lineHeight: 1,
-  color: 'primary',
-  boxShadow: `0 0 0 1px ${'black'}`,
-  width: '90%',
+  color: '#5A8392',
+  boxShadow: '0 0 0 1px #303030',
+  width: '100%',
 
-  '&:focus': { boxShadow: `0 0 0 2px ${'highlight'}` },
+  '&:focus': { boxShadow: '0 0 0 2px #134559' },
 });
 
 const Input = ({text, id, placeholder, value, onChange}: InputProps) => (

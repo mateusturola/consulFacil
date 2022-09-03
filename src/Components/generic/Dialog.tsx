@@ -4,13 +4,12 @@ import { styled, keyframes } from '@stitches/react';
 
 const StyledTitle = styled(DialogPrimitive.Title, {
   margin: 0,
-  fontWeight: 500,
+  fontWeight: 700,
   color: '#303030',
-  fontSize: 17,
+  fontSize: 19,
 });
 
 const StyledDescription = styled(DialogPrimitive.Description, {
-  margin: '10px 0 20px',
   color:  '#303030',
   fontSize: 15,
   lineHeight: 1.5,
@@ -22,7 +21,7 @@ const overlayShow = keyframes({
 });
 
 const contentShow = keyframes({
-  '0%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.96)' },
+  '0%': { opacity: 0, transform: 'translate(-50%, -48%) scale(.26)' },
   '100%': { opacity: 1, transform: 'translate(-50%, -50%) scale(1)' },
 });
 
@@ -35,8 +34,8 @@ const StyledWrapper = styled(DialogPrimitive.Content, {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '90vw',
-  maxWidth: '450px',
+  width: '75vw',
+  maxWidth: '500px',
   maxHeight: '85vh',
   padding: 25,
   '@media (prefers-reduced-motion: no-preference)': {
@@ -55,7 +54,17 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
   },
 });
 
-const StyledContent = styled('div', '');
+const StyledContent = styled('div', {
+  gap: '15px',
+  display: 'flex',
+  flexDirection: 'column',
+});
+
+const StyledHeader = styled('div', {
+  gap: '2px',
+  display: 'flex',
+  flexDirection: 'column',
+});
 
 
 
@@ -98,3 +107,4 @@ DialogContent.displayName = 'ModalContent';
 export const DialogTitle = StyledTitle;
 export const DialogDescription = StyledDescription;
 export const DialogClose = DialogPrimitive.Close;
+export const DialogText = StyledHeader;

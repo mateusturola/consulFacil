@@ -12,11 +12,11 @@ const InputStyled = styled(DatePicker, {
   padding: '15px',
   fontSize: 17,
   lineHeight: 1,
-  color: 'primary',
-  boxShadow: `0 0 0 1px ${'black'}`,
-  width: '80%',
+  color: '#5A8392',
+  boxShadow: '0 0 0 1px #303030',
+  width: '100%',
 
-  '&:focus': { boxShadow: `0 0 0 2px ${'highlight'}` },
+  '&:focus': { boxShadow: '0 0 0 2px #134559' },
 });
 
 type DateProps = {

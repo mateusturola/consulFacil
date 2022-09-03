@@ -5,7 +5,7 @@ import { Slot } from '@radix-ui/react-slot';
 
 type ButtonProps = {
   children: ReactNode,
-  style?: string,
+  style?: any,
   OnClick?: () => void,
   disabled?: boolean,
 };
@@ -32,7 +32,7 @@ const ButtonStyle = styled('button', {
   },
 
   variants: {
-    style: {
+    cor: {
       violet: {
         backgroundColor: 'blueviolet',
         color: '#f1f1f1',
@@ -61,7 +61,7 @@ const ButtonStyle = styled('button', {
 export const Button = ({children, style,  OnClick, disabled}: ButtonProps) => {
   disabled = disabled || false;
   return (
-    <ButtonStyle style={style} onClick={OnClick} type="button" disabled={disabled}>
+    <ButtonStyle cor={style} onClick={OnClick} type="button" disabled={disabled}>
       {children}
     </ButtonStyle>
   )

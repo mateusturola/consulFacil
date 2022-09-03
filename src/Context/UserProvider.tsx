@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import PropTypes from 'prop-types';
 import { ReactNode } from 'react';
-import InvoicesContext from './InvoicesContext';
+import UserContext from './UserContext';
 
 type UserProviderProps = {
   children: ReactNode;
@@ -10,12 +10,12 @@ type UserProviderProps = {
 
 function UserProvider({ children }: UserProviderProps) {
 
-  const contextValue = { };
+  const contextValue = {  };
 
   return (
-    <InvoicesContext.Provider value={contextValue}>
+    <UserContext.Provider value={contextValue}>
       {children}
-    </InvoicesContext.Provider>
+    </UserContext.Provider>
   );
 }
 

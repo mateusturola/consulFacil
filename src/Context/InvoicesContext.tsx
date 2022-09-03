@@ -12,6 +12,8 @@ const initialState = {
   setDisableClearFilter: () => {},
   errorMessage: '',
   setErrorMessage: () => {},
+  sumInvoices: 0,
+  setSumInvoices: () => {},
 }
 
 const InvoicesContext = createContext<InvoiceContextType>(initialState);

@@ -18,25 +18,25 @@
     "baseUrl": "src",
     "paths": {
       "Components/*": [
-        "src/Components/*"
+        "./Components/*"
       ],
       "Context/*":[
-        "src/Context/*"
+        "./Context/*"
       ],
       "Helpers/*":[
-        "src/Helpers/*"
+        "./Helpers/*"
       ],
       "Hooks/*":[
-        "src/Hooks/*"
+        "./Hooks/*"
       ],
       "Page/*":[
-        "src/Page/*"
+        "./Page/*"
       ],
       "Types/*":[
-        "src/Types/*"
+        "./Types/*"
       ],
       "Style/*":[
-        "src/Style/*"
+        "./Style/*"
       ],
     },
   },

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { string } from 'prop-types';
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 const useAxios = (axiosParams: AxiosRequestConfig) => {
   const [response, setResponse] = useState<AxiosResponse>();
-  const [error, setError] = useState<AxiosError>();
+  const [error, setError] = useState<AxiosError|any>();
   const [loading, setLoading] = useState(axiosParams.method === "GET" || axiosParams.method === "get");
 
   const fetchData = async (params: AxiosRequestConfig) => {

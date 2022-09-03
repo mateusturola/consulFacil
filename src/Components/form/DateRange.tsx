@@ -1,9 +1,9 @@
 
-import { useState } from 'react';
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import "react-datepicker/dist/react-datepicker.css";
 import { styled } from '@stitches/react';
+import { DateRangeProps } from 'Types/DateRange';
 
 registerLocale('pt-BR', ptBR);
 
@@ -28,34 +28,31 @@ const FlexLine = styled('div', {
   gap: '5px',
 })
 
-const DateInput = ({initialDateState, endDataState}) => {
+
+const DateInput = ({initialDateState, endDataState}: DateRangeProps) => {
 
   return (
     <FlexLine>
       <InputStyled
-        selected={initialDateState.initialDate}
-        onChange={(date) => initialDateState.setinitialDate(date)}
+        placeholderText="Data Inicial"
+        selected={initialDateState.inDate}
+        onChange={(date) => initialDateState.setInDate(date)}
         selectsStart
         locale={ptBR}
-        initialDate={initialDateState.initialDate}
-        finalDate={initialDateState.finalDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation
-        placeholderText="Data Inicial"
       />
       <InputStyled
+        placeholderText="Data final"
         selected={endDataState.finalDate}
-        onChange={(date) => endDataState.setfinalDate(date)}
+        onChange={(date) => endDataState.setFinalDate(date)}
         selectsEnd
         locale={ptBR}
-        initialDate={endDataState.initialDate}
-        finalDate={endDataState.finalDate}
-        minDate={endDataState.initialDate}
+        minDate={endDataState.inDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
         disabledKeyboardNavigation
-        placeholderText="Data final"
       />
     </FlexLine>
   );

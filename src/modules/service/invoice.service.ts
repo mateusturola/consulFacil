@@ -25,7 +25,7 @@ export class InvoiceService {
             patientId = patientCreated?.id;
         }
 
-        const invoiceCreated = await prismaClient.invoices.create({
+        await prismaClient.invoices.create({
             data: {
                 patient: {
                     connect: {
@@ -37,7 +37,9 @@ export class InvoiceService {
             },
         });
 
-        return invoiceCreated;
+        const getAllInvoices = await this.getAll();
+
+        return getAllInvoices;
     }
 
     async getAll(){

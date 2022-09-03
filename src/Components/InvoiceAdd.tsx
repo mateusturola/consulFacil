@@ -94,6 +94,7 @@ const PlusIconIcon = styled(PlusIcon, {
 const InvoiceAdd = () => {
   const [patient, setPatient] = useState("");
   const [amount, setAmount] = useState("");
+  const [amountNumber, setAmountNumber] = useState(0);
   const [date, setDate] = useState<any>(null);
 
   const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
@@ -105,17 +106,19 @@ const InvoiceAdd = () => {
       accept: '*/*',
       Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
     },
-    data: {patient, date, amount: parseInt(amount)}
+    data: {patient, date, amount: amountNumber}
   });
 
   const handleSubmit = () => {
-    setError('');
-    parseInt(amount)
-    sendData();
+    const formatAmount = amount.replace(/[^\d\,]/g, "").replace(",", ".")
+    setAmountNumber(parseFloat(formatAmount));
 
+    setError('');
     setPatient("");
     setAmount("");
     setDate(null);
+
+    sendData();
   };
 
   useEffect(() => {

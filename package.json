@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "start": "node index.js",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --port 8080",
+    "build": "tsc --noEmit && vite build",
+    "serve": "vite preview"
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",

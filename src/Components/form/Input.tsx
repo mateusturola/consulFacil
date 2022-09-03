@@ -1,12 +1,11 @@
 import React, { ReactNode } from 'react';
 import { styled } from '@stitches/react';
-import { violet, blackA, mauve, green } from '@radix-ui/colors';
 
 type InputProps = {
   type: string,
   id: string,
   name: string,
-  placeholder: string,
+  placeholder?: string,
   value: string,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
   text?: string,

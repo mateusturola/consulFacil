@@ -39,7 +39,6 @@ const DataInput = ({placeholder, dateState, id}: DateProps) => {
       locale={ptBR}
       todayButton="Hoje"
       dateFormat="dd/MM/yyyy"
-      disabledKeyboardNavigation
     />
   );
 }

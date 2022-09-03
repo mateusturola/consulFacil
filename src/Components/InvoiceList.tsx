@@ -59,13 +59,12 @@ export default function InvoiceList() {
               <CardInvoice key={invoice.id}>
                 <InvoiceCardHeader>{invoice.patient.name}</InvoiceCardHeader>
                 <InvoiceCardLine>
-                  <p>R$ {(invoice.amount).toFixed(2)}</p>
+                  <p>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
                   <p>{formatDate(new Date(invoice.date))}</p>
                 </InvoiceCardLine>
               </CardInvoice>
             )
-            )
-
+      )
       }
 
     </InvoicesList>

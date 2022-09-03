@@ -37,22 +37,24 @@ const DateInput = ({initialDateState, endDataState}: DateRangeProps) => {
         placeholderText="Data Inicial"
         selected={initialDateState.inDate}
         onChange={(date) => initialDateState.setInDate(date)}
-        selectsStart
         locale={ptBR}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
-        disabledKeyboardNavigation
+        selectsStart
+        startDate={initialDateState.inDate}
+        endDate={endDataState.inDate}
       />
       <InputStyled
         placeholderText="Data final"
         selected={endDataState.finalDate}
         onChange={(date) => endDataState.setFinalDate(date)}
-        selectsEnd
         locale={ptBR}
-        minDate={endDataState.inDate}
         todayButton="Hoje"
         dateFormat="dd/MM/yyyy"
-        disabledKeyboardNavigation
+        selectsEnd
+        minDate={initialDateState.inDate}
+        startDate={initialDateState.inDate}
+        endDate={endDataState.inDate}
       />
     </FlexLine>
   );

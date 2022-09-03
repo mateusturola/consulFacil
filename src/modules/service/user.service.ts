@@ -46,4 +46,16 @@ export class UserService {
       throw new AppError('Senha incorreta', 401);
     }
   }
+
+  async findById(id: number) {
+    const user = await prismaClient.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!user) throw new AppError('Usuário não encontrado', 404);
+
+    return user;
+  }
 }

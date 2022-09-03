@@ -67,7 +67,9 @@ export class InvoiceService {
 
         if(filter.patient) {
             filterParams.patient = {
-                name: filter.patient,
+                name: {
+                    contains: filter.patient,
+                }
             }
         }
 

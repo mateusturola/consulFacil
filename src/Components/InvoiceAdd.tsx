@@ -22,7 +22,7 @@ const Button = styled('button', {
   border: '2px solid #134559',
   backgroundColor: '#f1f1f1',
   color: '#134559',
-  
+
   '&:hover': {
     backgroundColor: '#134559',
     color: '#f1f1f1',
@@ -113,6 +113,7 @@ const InvoiceAdd = () => {
   const handleSubmit = () => {
     const formatAmount = amount.replace(/[^\d\,]/g, "").replace(",", ".")
     setAmountNumber(parseFloat(formatAmount));
+    setLoading(true);
 
     setError('');
     setPatient("");

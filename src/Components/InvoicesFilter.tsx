@@ -46,14 +46,15 @@ const Button = styled('button', {
 const FlexButton = styled('div', {
   display: 'flex',
   justifyContent: 'flex-end',
-  flexDirection: 'row',
-  gap: '5px',
+  flexDirection: 'column',
+  gap: '10px',
   width: '100%',
 
   '@bp2': {
     flexDirection: 'row',
   },
 });
+
 
 const Flex = styled('div', {
   display: 'flex',
@@ -93,22 +94,6 @@ const Form = styled("div", {
   flexDirection: "column",
   gap: 10,
 });
-
-
-
-const FlexLine = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  gap: '5px',
-
-  '@bp2': {
-    flexDirection: 'row',
-  },
-})
-
-
 
 const InvoicesFilter = () => {
   const { setFilteredInvoice, setLoading, invoices, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage } = useContext(InvoicesContext);

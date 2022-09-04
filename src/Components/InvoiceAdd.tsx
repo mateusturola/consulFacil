@@ -1,11 +1,12 @@
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
 import { DialogText, Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogWrapper } from "./generic/Dialog";
 import Input from "./form/Input";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import DataInput from "./form/DataInput";
 import { styled } from '../../stitches.config';
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
+import ToastAddInvoice from './ToastAddInvoice';
 
 
 const Button = styled('button', {
@@ -95,6 +96,9 @@ const InvoiceAdd = () => {
   const [amountNumber, setAmountNumber] = useState(0);
   const [date, setDate] = useState<any>(null);
 
+  const [open, setOpen] = useState<any>(null);
+  const timerRef = useRef(0);
+
   const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
 
   const { response, loading, error, sendData, setError } = useAxios({
@@ -154,6 +158,11 @@ const InvoiceAdd = () => {
       setFilteredInvoice(response?.data);
       setErrorMessage('');
       setLoading(loading);
+      setOpen(false);
+      window.clearTimeout(timerRef.current);
+      timerRef.current = window.setTimeout(() => {
+        setOpen(true);
+      }, 100);
     }
   } , [response, error, loading ]);
 
@@ -208,6 +217,8 @@ const InvoiceAdd = () => {
           </DialogClose>
         </DialogContent>
       </DialogWrapper>
+
+      <ToastAddInvoice open={open} setOpen={setOpen} />
     </Dialog>
   )
 }

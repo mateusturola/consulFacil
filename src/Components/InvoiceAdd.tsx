@@ -30,7 +30,7 @@ const Button = styled('button', {
 
   variants: {
     color: {
-      cancel: {
+      line: {
         border: '2px solid #5A8392',
         backgroundColor: '#f1f1f1',
         color: '#5A8392',

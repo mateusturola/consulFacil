@@ -161,7 +161,7 @@ const InvoiceAdd = () => {
               />
               <Input
                 placeholder="Valor"
-                type="text"
+                type="number"
                 id="amount"
                 name="amount"
                 value={amount}

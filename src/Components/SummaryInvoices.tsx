@@ -30,7 +30,6 @@ export const SummaryInvoices = () => {
     <CardInvoice>
       <p>Você tem</p>
       <h3>{
-        loading ? <Loading /> :
         sumInvoices.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
       }</h3>
       <p>a receber.</p>

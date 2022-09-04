@@ -111,8 +111,6 @@ const InvoiceAdd = () => {
   });
 
   const handleSubmit = () => {
-    const formatAmount = amount.replace(/[^\d\,]/g, "").replace(",", ".")
-    setAmountNumber(parseFloat(formatAmount));
     setLoading(true);
 
     setError('');
@@ -122,6 +120,12 @@ const InvoiceAdd = () => {
 
     sendData();
   };
+
+  const handleChange = (value) => {
+    const formatAmount = value.replace(/[^\d\,]/g, "").replace(",", ".")
+    setAmountNumber(parseFloat(formatAmount));
+    setAmount(value);
+  }
 
   useEffect(() => {
     if (error) {
@@ -161,7 +165,7 @@ const InvoiceAdd = () => {
                 id="amount"
                 name="amount"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={(e) => handleChange(e.target.value)}
               />
               <DataInput
                 placeholder="Data para pagamento"

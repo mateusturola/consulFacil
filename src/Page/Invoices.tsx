@@ -3,7 +3,7 @@ import InvoicesContext from 'Context/InvoicesContext';
 import { useContext, useEffect } from 'react';
 import InvoiceList from 'Components/InvoiceList';
 import { Title } from 'Components/generic/Title';
-import { styled } from '../../stitches.config';
+import { globalCss, styled } from '../../stitches.config';
 import { SummaryInvoices } from 'Components/SummaryInvoices';
 import InvoicesNav from 'Components/InvoiceNav';
 import Loading from 'Components/generic/Loading';
@@ -15,8 +15,15 @@ const Main = styled('main', {
   gap: '20px',
 })
 
+const globalStyles = globalCss({
+  'body': {
+    background: 'none',
+  },
+});
+
 
 export default function Invoices() {
+  globalStyles();
   const { setInvoices, setLoading} = useContext(InvoicesContext);
   const { response, loading, sendData } = useAxios({
     method: "get",

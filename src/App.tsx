@@ -2,6 +2,7 @@ import InvoicesProvider from "./Context/InvoicesProvider";
 import AppRoutes from "./Page/Routes";
 import { globalCss } from "@stitches/react";
 import { Header } from "Components/Header";
+import UserProvider from "Context/UserProvider";
 
 function App() {
   const globalStyles = globalCss({
@@ -13,12 +14,14 @@ function App() {
 
   globalStyles()
   return (
-    <InvoicesProvider>
-      <div className="App">
-        <Header />
-        <AppRoutes />
-      </div>
-    </InvoicesProvider>
+    <UserProvider>
+      <InvoicesProvider>
+        <div className="App">
+          <Header />
+          <AppRoutes />
+        </div>
+      </InvoicesProvider>
+    </UserProvider>
   );
 }
 

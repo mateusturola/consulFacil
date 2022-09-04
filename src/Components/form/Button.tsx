@@ -24,6 +24,7 @@ const ButtonStyle = styled('button', {
   border: '2px solid #134559',
   backgroundColor: '#f1f1f1',
   color: '#134559',
+  cursor: 'pointer',
   '&:hover': {
     backgroundColor: '#134559',
     color: '#f1f1f1',

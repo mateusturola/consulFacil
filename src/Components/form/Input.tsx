@@ -25,8 +25,10 @@ const InputStyled = styled('input', {
   '&:focus': { boxShadow: '0 0 0 2px #134559' },
 });
 
-const Input = ({text, id, placeholder, value, onChange}: InputProps) => (
-    <InputStyled type={text} id={id} placeholder={placeholder}  value={value} onChange={onChange}/>
-);
+const Input = ({type, id, placeholder, value, onChange}: InputProps) => {
+  return (
+    <InputStyled type={type} id={id} placeholder={placeholder}  value={value} onChange={onChange}/>
+)
+};
 
 export default Input;

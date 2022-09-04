@@ -89,9 +89,6 @@ const PlusIconIcon = styled(PlusIcon, {
   width: '20px',
 });
 
-
-
-
 const InvoiceAdd = () => {
   const [patient, setPatient] = useState("");
   const [amount, setAmount] = useState("");
@@ -110,19 +107,42 @@ const InvoiceAdd = () => {
     data: {patient, date, amount: amountNumber}
   });
 
+
+  const validateForm = () => {
+    if (patient === "" && amount === "" && date === null) {
+      alert("Preencha todos os campos");
+      return false;
+    } else if (patient === "") {
+      alert("Preencha o campo do paciente");
+      return false;
+    } else if (amount === "") {
+      alert("Preencha o campo da quantidade");
+      return false;
+    } else if (date === null) {
+      alert("Preencha o campo da data");
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   const handleSubmit = () => {
-    setLoading(true);
+    const isValid = validateForm();
 
-    setError('');
-    setPatient("");
-    setAmount("");
-    setDate(null);
+    if (isValid) {
+      setLoading(true);
+      setError('');
+      setPatient("");
+      setAmount("");
+      setDate(null);
 
-    sendData();
+      sendData();
+    }
+
   };
 
   const handleChange = (value: string) => {
-    const formatAmount = value.replace(/[^\d\,]/g, "").replace(",", ".")
+    const formatAmount = value.replace(/[^\d\,.]/g, "").replace(",", ".")
     setAmountNumber(parseFloat(formatAmount));
     setAmount(value);
   }

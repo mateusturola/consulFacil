@@ -121,7 +121,7 @@ const InvoiceAdd = () => {
     sendData();
   };
 
-  const handleChange = (value) => {
+  const handleChange = (value: string) => {
     const formatAmount = value.replace(/[^\d\,]/g, "").replace(",", ".")
     setAmountNumber(parseFloat(formatAmount));
     setAmount(value);

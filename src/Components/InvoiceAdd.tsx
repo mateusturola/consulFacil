@@ -96,8 +96,12 @@ const InvoiceAdd = () => {
   const [amountNumber, setAmountNumber] = useState(0);
   const [date, setDate] = useState<any>(null);
 
-  const [open, setOpen] = useState<any>(null);
+  const [open, setOpen] = useState<any>(false);
   const timerRef = useRef(0);
+
+  useEffect(() => {
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
 
@@ -158,11 +162,16 @@ const InvoiceAdd = () => {
       setFilteredInvoice(response?.data);
       setErrorMessage('');
       setLoading(loading);
-      setOpen(false);
-      window.clearTimeout(timerRef.current);
-      timerRef.current = window.setTimeout(() => {
-        setOpen(true);
-      }, 100);
+
+      if(timerRef.current > 0) {
+        setOpen(false);
+        window.clearTimeout(timerRef.current);
+        timerRef.current = window.setTimeout(() => {
+          setOpen(true);
+        }, 100);
+      }
+
+      timerRef.current = timerRef.current + 1
     }
   } , [response, error, loading ]);
 

@@ -162,8 +162,7 @@ const InvoiceAdd = () => {
       setFilteredInvoice(response?.data);
       setErrorMessage('');
       setLoading(loading);
-
-      if(timerRef.current > 0) {
+      if(timerRef.current > 1) {
         setOpen(false);
         window.clearTimeout(timerRef.current);
         timerRef.current = window.setTimeout(() => {

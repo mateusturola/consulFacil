@@ -56,7 +56,6 @@ export default function InvoiceList() {
 
   return (
     <InvoicesList className="invoice-list">
-        {loading && <Loading />}
         {errorMessage && <p>{errorMessage}</p>}
 
         { !errorMessage && invoiceList && invoiceList.map((invoice) => (

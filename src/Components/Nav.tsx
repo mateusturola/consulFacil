@@ -10,8 +10,8 @@ const Box = styled('div', {});
 const IconButton = styled('button', {
   all: 'unset',
   fontFamily: 'inherit',
-  height: 30,
-  width: 30,
+  height: 25,
+  width: 25,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -25,7 +25,7 @@ export const Nav = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <IconButton aria-label="Menu Principal">
-            <HamburgerMenuIcon  width="35" height="35"/>
+            <HamburgerMenuIcon  width="25" height="25"/>
           </IconButton>
         </DropdownMenuTrigger>
 

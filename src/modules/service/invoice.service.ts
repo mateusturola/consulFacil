@@ -112,4 +112,87 @@ export class InvoiceService {
 
         return invoices;
     }
+
+    async getById(id: number){
+        const invoice = await prismaClient.invoices.findUnique({
+            where: {
+                id: id,
+            },
+            select: {
+                id: true,
+                patient: {
+                    select: {
+                        name: true,
+                    },
+                },
+                amount: true,
+                date: true,
+                paid: true,
+            },
+        });
+
+        if (!invoice) throw new AppError('Nenhuma fatura encontrada', 404);
+
+        return invoice;
+    }
+
+    async update(id:number ,invoice: any){
+        const { patient, amount, date, paid } = invoice;
+
+
+        const dateFormatted = new Date(date);
+
+        const getInvoice = await this.getById(id);
+
+
+        if (!getInvoice) throw new AppError('Nenhuma fatura encontrada', 404);
+
+        const verifyPaid = paid === undefined ? getInvoice.paid : paid;
+
+        const getPatient = await prismaClient.patients.findFirst({
+            where: {
+                name: patient,
+            },
+            select: {
+                id: true,
+            },
+        });
+
+
+        await prismaClient.invoices.update({
+            where: {
+                id,
+            },
+            data: {
+                patient: {
+                    connect: {
+                        id: getPatient?.id,
+                    },
+                },
+                amount,
+                date: dateFormatted,
+                paid: verifyPaid,
+            },
+        });
+
+        const getAllInvoices = await this.getAll();
+
+        return getAllInvoices;
+    }
+
+    async delete(id: number){
+        const invoice = await this.getById(id);
+
+        if (!invoice) throw new AppError('Nenhuma fatura encontrada', 404);
+
+        await prismaClient.invoices.delete({
+            where: {
+                id,
+            },
+        });
+
+        const getAllInvoices = await this.getAll();
+
+        return getAllInvoices;
+    }
 }

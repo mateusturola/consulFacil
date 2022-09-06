@@ -31,7 +31,6 @@ export default class TokenValidation {
 
       next();
     } catch (error: any) {
-      console.log(error)
       throw new AppError(error.message, 400);
     }
   }

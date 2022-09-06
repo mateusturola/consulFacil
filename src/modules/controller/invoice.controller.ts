@@ -26,4 +26,28 @@ export class InvoiceController {
 
         return res.status(StatusCodes.OK).json(invoices);
     }
+
+    async getById(req: Request, res: Response): Promise<Response> {
+        const invoiceService = new InvoiceService();
+
+        const invoice = await invoiceService.getById(Number(req.params.id));
+
+        return res.status(StatusCodes.OK).json(invoice);
+    }
+
+    async update(req: Request, res: Response): Promise<Response> {
+        const invoiceService = new InvoiceService();
+
+        const invoice = await invoiceService.update(Number(req.params.id), req.body);
+
+        return res.status(StatusCodes.OK).json(invoice);
+    }
+
+    async delete(req: Request, res: Response): Promise<Response> {
+        const invoiceService = new InvoiceService();
+
+        const invoice = await invoiceService.delete(Number(req.params.id));
+
+        return res.status(StatusCodes.OK).json(invoice);
+    }
 }

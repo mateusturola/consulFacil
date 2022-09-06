@@ -34,14 +34,14 @@ export class UserService {
     const user = await prismaClient.user.findUnique({
       where: {
         email,
-      },
+      }
     });
 
     if (!user) throw new AppError('Usuário não encontrado', 401);
 
     if (await argon2.verify(user.password, password)) {
       const token = jwt.sign({ userId: user.id, name: user.name }, publicKey);
-      return token;
+      return {token: token, user: { name: user.name, email: user.email }};
     } else {
       throw new AppError('Senha incorreta', 401);
     }

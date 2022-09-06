@@ -1,7 +1,9 @@
 import { render } from "react-dom"
 import { styled } from "../../stitches.config"
 import Nav from "./Nav"
-import logo from "../img/logo.png"
+import UserContext from "Context/UserContext"
+import { useContext } from "react"
+import Logo from "./Logo"
 
 const HeaderStyle = styled('header', {
   display: 'flex',
@@ -13,19 +15,18 @@ const HeaderStyle = styled('header', {
   alignItems: 'center',
 })
 
-const Img = styled('img', {
-  maxWidth: '190px',
-  maxHeight: '25px',
-  width: 'auto',
-  height: 'auto',
-})
-
 
 export const Header = () => {
+
+  const { isLogin } = useContext(UserContext);
+
   return (
-    <HeaderStyle>
-      <Img src={logo} alt="ConsulFácil - A Gestão do seu consultório na palma da sua mão"  />
+    <>
+    { isLogin && <HeaderStyle>
+      <Logo />
       <Nav />
-    </HeaderStyle>
+      </HeaderStyle>
+    }
+  </>
   )
 }

@@ -7,6 +7,7 @@ import { styled } from '../../stitches.config';
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
 import ToastAddInvoice from './ToastAddInvoice';
+import UserContext from 'Context/UserContext';
 
 
 const Button = styled('button', {
@@ -104,13 +105,15 @@ const InvoiceAdd = () => {
   }, []);
 
   const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
+  const {token} = useContext(UserContext);
+
 
   const { response, loading, error, sendData, setError } = useAxios({
     method: "post",
     url: '/invoice',
     headers: {
       accept: '*/*',
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
+      Authorization: token
     },
     data: {patient, date, amount: amountNumber}
   });
@@ -124,7 +127,7 @@ const InvoiceAdd = () => {
       alert("Preencha o campo do paciente");
       return false;
     } else if (amount === "") {
-      alert("Preencha o campo da quantidade");
+      alert("Preencha o campo de valor");
       return false;
     } else if (date === null) {
       alert("Preencha o campo da data");

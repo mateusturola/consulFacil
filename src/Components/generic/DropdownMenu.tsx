@@ -108,9 +108,7 @@ const titleH3 = {
   display: 'flex',
   alignItems: 'center',
   height: 35,
-  padding: '10px 5px',
   position: 'relative',
-  paddingLeft: 25,
   userSelect: 'none',
   fontWeight: 700,
 

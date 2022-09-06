@@ -2,11 +2,12 @@ import InvoicesContext from 'Context/InvoicesContext';
 import UserContext from 'Context/UserContext';
 import useAxios from 'Hooks/useAxios';
 import React, { useContext, useEffect } from 'react';
-import { styled } from '../../stitches.config';
+import { globalCss, styled } from '../../stitches.config';
 import { Button } from './form/Button';
 import Input from './form/Input';
 import TooltipLogin from './generic/Tooltip';
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from 'Hooks/useLocalStorage';
 
 
 const Flex = styled('div', {
@@ -32,6 +33,9 @@ const Login = () => {
   const { setToken, setUser, setIsLogin, setErrorMessage, isLogin } = useContext(UserContext);
   const { setLoading } = useContext(InvoicesContext);
 
+  const [tokenLocal, setTokenLocal] = useLocalStorage('token', '');
+  const [isLoginLocal, setIsLoginLocal] = useLocalStorage('isLogin', false);
+
   let navigate = useNavigate();
 
   const { response, loading, error, sendData } = useAxios({
@@ -51,9 +55,11 @@ const Login = () => {
     } else {
       setToken(response?.data.token);
       setUser(response?.data.user);
+      setTokenLocal(response?.data.token);
 
       if(response?.status === 200) {
         setIsLogin(true);
+        setIsLoginLocal(true);
       }
       setErrorMessage('');
       setLoading(loading);

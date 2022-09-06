@@ -1,15 +1,10 @@
 import { TitleH3 } from 'Components/generic/DropdownMenu';
 import Loading from 'Components/generic/Loading';
 import Login from 'Components/Login';
+import Logo from 'Components/Logo';
 import InvoicesContext from 'Context/InvoicesContext';
 import { useContext } from 'react';
 import { globalCss, styled } from '../../stitches.config';
-
-const globalStyles = globalCss({
-  'body': {
-    background: 'linear-gradient(-135deg,#134559,#5A8392)',
-   },
-});
 
 const Flex = styled('div', {
   display: 'flex',
@@ -18,7 +13,9 @@ const Flex = styled('div', {
   flexDirection: 'column',
   gap: '10px',
   margin: '0 auto',
-  height: '80%',
+  height: '100%',
+  background: 'linear-gradient(-135deg,#134559,#5A8392)',
+
 });
 
 const LoginCard = styled('div', {
@@ -26,7 +23,7 @@ const LoginCard = styled('div', {
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
-  gap: '10px',
+  gap: '50px',
   width: '85vw',
   margin: '0 auto',
   backgroundColor: '#f1f1f1',
@@ -42,15 +39,13 @@ const LoginCard = styled('div', {
 
 
 export default function Home() {
-  globalStyles();
-
-  const { loading} = useContext(InvoicesContext);
+  const { loading } = useContext(InvoicesContext);
 
   return (
     <Flex>
-      <LoginCard>
       { loading && <Loading />}
-        <TitleH3> Login </TitleH3>
+      <LoginCard>
+        <Logo />
         <Login />
       </LoginCard>
     </Flex>

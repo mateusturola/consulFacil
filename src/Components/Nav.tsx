@@ -1,8 +1,12 @@
-import * as React from "react";
+import { useContext } from "react";
 import { styled } from "@stitches/react";
 import { Link } from "react-router-dom";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, TitleH3 } from "./generic/DropdownMenu";
 import { HamburgerMenuIcon } from '@radix-ui/react-icons';
+import UserContext from "Context/UserContext";
+import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "Hooks/useLocalStorage";
+
 
 const Box = styled('div', {});
 
@@ -19,7 +23,25 @@ const IconButton = styled('button', {
   '&:hover': { color: '#134559' },
 });
 
+const Button = styled('button', {
+  all: 'unset',
+});
+
 export const Nav = () => {
+  const { user, setIsLogin } = useContext(UserContext);
+
+  const [tokenLocal, setTokenLocal] = useLocalStorage('token', '');
+  const [isLoginLocal, setIsLoginLocal] = useLocalStorage('isLogin', false);
+  let navigate = useNavigate();
+
+
+  const handleLogout = () => {
+    setIsLogin(false);
+    setTokenLocal('');
+    setIsLoginLocal(false);
+    navigate("/");
+  };
+
   return (
     <Box>
       <DropdownMenu>
@@ -31,7 +53,7 @@ export const Nav = () => {
 
         <DropdownMenuContent sideOffset={5}>
           <TitleH3>
-            Olá, Érica
+            Olá, {user.name}
           </TitleH3>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
@@ -39,7 +61,9 @@ export const Nav = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            Sair
+            <Button type="button" onClick={handleLogout}>
+              Sair
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

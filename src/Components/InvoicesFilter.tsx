@@ -6,6 +6,7 @@ import { styled } from '../../stitches.config';
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
 import DateInput from "./form/DateRange";
+import UserContext from 'Context/UserContext';
 
 const Button = styled('button', {
   padding: '20px 0',
@@ -96,18 +97,20 @@ const Form = styled("div", {
 });
 
 const InvoicesFilter = () => {
-  const { setFilteredInvoice, setLoading, invoices, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage } = useContext(InvoicesContext);
+  const { setFilteredInvoice, setLoading, setDisableClearFilter, setErrorMessage } = useContext(InvoicesContext);
+  const {token} = useContext(UserContext);
 
   const [patient, setPatient] = useState("");
   const [inDate, setInDate] = useState<any>(null);
   const [finalDate, setFinalDate] = useState<any>(null);
+
 
   const { response, loading, error, sendData, setError } = useAxios({
     method: "get",
     url: '/invoice/filter',
     headers: {
       accept: '*/*',
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
+      Authorization: token
     },
     params: {patient, initialDate: inDate, finalDate}
   });

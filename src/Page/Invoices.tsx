@@ -3,10 +3,13 @@ import InvoicesContext from 'Context/InvoicesContext';
 import { useContext, useEffect } from 'react';
 import InvoiceList from 'Components/InvoiceList';
 import { Title } from 'Components/generic/Title';
-import { globalCss, styled } from '../../stitches.config';
+import { styled } from '../../stitches.config';
 import { SummaryInvoices } from 'Components/SummaryInvoices';
 import InvoicesNav from 'Components/InvoiceNav';
 import Loading from 'Components/generic/Loading';
+import UserContext from 'Context/UserContext';
+import { Link } from 'react-router-dom';
+import IsLoginMessage from 'Page/IsLoginMessage';
 
 const Main = styled('main', {
   padding: '20px',
@@ -15,22 +18,16 @@ const Main = styled('main', {
   gap: '20px',
 })
 
-const globalStyles = globalCss({
-  'body': {
-    background: 'none',
-  },
-});
-
 
 export default function Invoices() {
-  globalStyles();
   const { setInvoices, setLoading} = useContext(InvoicesContext);
-  const { response, loading, sendData } = useAxios({
+  const {token, isLogin} = useContext(UserContext);
+  const { response, loading, sendData, error } = useAxios({
     method: "get",
     url: '/invoice',
     headers: {
       accept: '*/*',
-      Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsIm5hbWUiOiJFcmljYSIsImlhdCI6MTY2MTU1OTAyOH0.rjRtmkNRGwg4sMxsXREoZRMUlWBwX6_iPzW9DjP9kEA'
+      Authorization: token,
     }
   });
 
@@ -40,12 +37,15 @@ export default function Invoices() {
     sendData();
   } , [loading]);
 
-
-  return (
+  if(!isLogin) {
+    return (
+      <IsLoginMessage/>
+    )
+  } else {
+      return (
     <Main>
       <Title>Financeiro</Title>
-
-      {loading ? <Loading /> : ( 
+      {!isLogin && loading ? <Loading /> : ( 
         <>
           <InvoicesNav />
           <SummaryInvoices />
@@ -54,4 +54,5 @@ export default function Invoices() {
       )}
     </Main>
   );
+}
 }

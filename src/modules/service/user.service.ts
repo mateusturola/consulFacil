@@ -1,6 +1,6 @@
 import { prismaClient } from '../database/prismaClient';
 import jwt from 'jsonwebtoken';
-import { privateKey } from '../../shared/config/jwt/readKey';
+import { privateKey, publicKey } from '../../shared/config/jwt/readKey';
 import AppError from '../../shared/errors/AppError';
 import argon2 from 'argon2';
 
@@ -40,7 +40,7 @@ export class UserService {
     if (!user) throw new AppError('Usuário não encontrado', 401);
 
     if (await argon2.verify(user.password, password)) {
-      const token = jwt.sign({ userId: user.id, name: user.name }, 'secret');
+      const token = jwt.sign({ userId: user.id, name: user.name }, publicKey);
       return token;
     } else {
       throw new AppError('Senha incorreta', 401);

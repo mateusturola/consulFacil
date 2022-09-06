@@ -10,8 +10,8 @@ const invoiceController = new InvoiceController();
 const validation = new TokenValidation();
 
 
-routesInvoice.get("/", invoiceController.getAll);
-routesInvoice.get("/filter", invoiceController.getByFilter);
-routesInvoice.post("/", invoiceValidator, invoiceController.create);
+routesInvoice.get("/", validation.userRoute , invoiceController.getAll);
+routesInvoice.get("/filter", validation.userRoute, invoiceController.getByFilter);
+routesInvoice.post("/", validation.userRoute, invoiceValidator, invoiceController.create);
 
 export default routesInvoice;

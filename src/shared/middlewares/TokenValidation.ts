@@ -8,7 +8,7 @@ import IUser from '@shared/InterFace/IUser';
 
 
 interface RequestToken extends Request {
-  user: IUser;
+  user?: IUser;
 }
 
 export default class TokenValidation {
@@ -16,13 +16,14 @@ export default class TokenValidation {
     const user = new UserService();
     const { authorization } = req.headers;
     const token = authorization?.replace('Bearer', '').trim() || '';
-    try {
 
-      const payload = jwt.verify(token, publicKey, {
-        algorithms: ['RS256'],
+    try {
+      const payload:any= jwt.verify(token, publicKey, {
+        algorithms: ['RS256', 'HS256'],
       });
 
-      const userData = await user.findById(Number(payload.sub));
+
+      const userData = await user.findById(payload.userId);
 
       if (userData === undefined) throw new AppError('Token inválido', 403);
 
@@ -30,6 +31,7 @@ export default class TokenValidation {
 
       next();
     } catch (error: any) {
+      console.log(error)
       throw new AppError(error.message, 400);
     }
   }

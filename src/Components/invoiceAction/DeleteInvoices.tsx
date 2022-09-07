@@ -12,8 +12,8 @@ type Props = {
 
 const IconButton = styled(TrashIcon, {
   all: 'unset',
-  height: '20px',
-  width: '20px',
+  height: '18px',
+  width: '18px',
 });
 
 const ButtonDelete = styled('button', {

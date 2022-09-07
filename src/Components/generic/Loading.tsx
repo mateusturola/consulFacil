@@ -5,7 +5,7 @@ const WrapperLoading = styled("div", {
   display: "flex",
   width: "100vw",
   height: "100vh",
-  background: "hsl(0deg 0% 13% / 33%)",
+  background: "rgb(0 0 0 / 2%)",
   position: "fixed",
   top: 0,
   left: 0,

@@ -23,7 +23,7 @@ const CardInvoice = styled('div', {
     background: 'white',
     borderRadius: '4px',
     padding: '20px',
-    gap: '10px',
+    gap: '25px',
     border: '1px solid #e6e6e6',
     width: '100%',
     '&:hover': {
@@ -42,6 +42,13 @@ const InvoiceCardHeader = styled('h2', {
   justifyContent: 'space-between',
   alignItems: 'center',
 })
+const InvoiceCardList = styled('p', {
+  border: '1px solid #aeaeae',
+  padding: '1px 15px',
+  fontSize: '0.8rem',
+  borderRadius: '4px',
+  fontWeight: '600',
+})
 
 const InvoiceCardLine = styled('div', {
     display: 'flex',
@@ -49,6 +56,14 @@ const InvoiceCardLine = styled('div', {
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: '10px',
+});
+
+const InvoiceAction = styled('div', {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '5px',
 });
 
 export default function InvoiceList() {
@@ -64,14 +79,16 @@ export default function InvoiceList() {
               <CardInvoice key={invoice.id}>
                 <InvoiceCardHeader>
                     {invoice.patient.name}
-                    <DeleteInvoices id={invoice.id} />
-                    <EditInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
-                    <PaidInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name} paidProp={invoice.paid}/>
+                    <InvoiceAction>
+                      <DeleteInvoices id={invoice.id} />
+                      <EditInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
+                      <PaidInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name} paidProp={invoice.paid}/>
+                    </InvoiceAction>
                 </InvoiceCardHeader>
                 <InvoiceCardLine>
-                  <p>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
-                  <p>{formatDate(new Date(invoice.date))}</p>
-                  <p>{invoice.paid ? 'Pago' : 'Pendente'}</p>
+                  <InvoiceCardList>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</InvoiceCardList>
+                  <InvoiceCardList>{formatDate(new Date(invoice.date))}</InvoiceCardList>
+                  <InvoiceCardList>{invoice.paid ? 'Pago' : 'Pendente'}</InvoiceCardList>
                 </InvoiceCardLine>
               </CardInvoice>
             )

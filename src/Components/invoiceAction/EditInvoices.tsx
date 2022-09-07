@@ -1,4 +1,4 @@
-import { Cross2Icon, Pencil1Icon, PlusIcon } from '@radix-ui/react-icons';
+import { Cross2Icon, Pencil2Icon } from '@radix-ui/react-icons';
 import { DialogText, Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogWrapper } from "../generic/Dialog";
 import Input from "../form/Input";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -88,9 +88,9 @@ const IconButton = styled('button', {
   right: 10,
 });
 
-const EditIcon = styled(Pencil1Icon, {
-  height: '20px',
-  width: '20px',
+const EditIcon = styled(Pencil2Icon, {
+  height: '17px',
+  width: '17px',
 });
 
 const ButtonDelete = styled('button', {

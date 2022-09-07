@@ -10,3 +10,12 @@ export const formatDate = (date: any) => {
     date.getFullYear(),
   ].join('/');
 }
+
+export function currencyMask(value: string) {
+  value = value.replace(/\D/g, "");
+  value = value.replace(/(\d)(\d{2})$/, "$1,$2");
+  const formatAmount = value.replace(/[^\d\,.]/g, "").replace(",", ".")
+  value = `R$ ${value.replace(/(?=(\d{3})+(\D))\B/g, ".")}`;
+
+  return {value, formatAmount};
+}

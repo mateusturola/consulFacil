@@ -6,9 +6,10 @@ import DataInput from "../form/DataInput";
 import { styled } from '../../../stitches.config';
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
-import ToastAddInvoice from '../ToastAddInvoice';
+import ToastInvoice from '../ToastInvoice';
 import UserContext from 'Context/UserContext';
 import Loading from 'Components/generic/Loading';
+import { currencyMask } from 'Helpers/index';
 
 
 const Button = styled('button', {
@@ -103,9 +104,11 @@ type Props = {
   dateProp: string,
 };
 
-const InvoiceEdit = ({patientProp, amountProp, dateProp, id }: Props) => {
+const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
+  const mask = currencyMask(amountProp);
+
   const [patient, setPatient] = useState(patientProp);
-  const [amount, setAmount] = useState(amountProp);
+  const [amount, setAmount] = useState(mask.value);
   const [amountNumber, setAmountNumber] = useState(Number(amountProp));
   const [date, setDate] = useState<any>(new Date(dateProp));
 
@@ -161,9 +164,10 @@ const InvoiceEdit = ({patientProp, amountProp, dateProp, id }: Props) => {
   };
 
   const handleChange = (value: string) => {
-    const formatAmount = value.replace(/[^\d\,.]/g, "").replace(",", ".")
-    setAmountNumber(parseFloat(formatAmount));
-    setAmount(value);
+    const mask = currencyMask(value);
+
+    setAmountNumber(parseFloat(mask.formatAmount));
+    setAmount(mask.value);
   }
 
   useEffect(() => {
@@ -212,7 +216,6 @@ const InvoiceEdit = ({patientProp, amountProp, dateProp, id }: Props) => {
               />
               <Input
                 placeholder="Valor"
-                type="number"
                 id="amount"
                 name="amount"
                 value={amount}
@@ -240,9 +243,9 @@ const InvoiceEdit = ({patientProp, amountProp, dateProp, id }: Props) => {
         </DialogContent>
       </DialogWrapper>
 
-      <ToastAddInvoice open={open} setOpen={setOpen} />
+      <ToastInvoice open={open} setOpen={setOpen} message="Cobrança editada com Sucesso!" />
     </Dialog>
   )
 }
 
-export default InvoiceEdit;
+export default EditInvoices;

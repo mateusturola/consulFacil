@@ -4,13 +4,14 @@ import { Toast, ToastAction, ToastProvider, ToastTitle, ToastViewport } from "./
 type ToastAddProps = {
   open?: boolean,
   setOpen: (isOpen?: boolean) => void | any,
+  message: string,
 };
 
-const ToastAddInvoice = ({open, setOpen}: ToastAddProps) => {
+const ToastInvoice = ({open, setOpen, message}: ToastAddProps) => {
   return (
     <ToastProvider swipeDirection="right">
       <Toast open={open} onOpenChange={setOpen}>
-        <ToastTitle>Cobrança adicionada com Sucesso!</ToastTitle>
+        <ToastTitle>{message}</ToastTitle>
         <ToastAction asChild altText="Goto schedule to undo">
           <Cross2Icon />
         </ToastAction>
@@ -20,4 +21,4 @@ const ToastAddInvoice = ({open, setOpen}: ToastAddProps) => {
   );
 };
 
-export default ToastAddInvoice;
+export default ToastInvoice;

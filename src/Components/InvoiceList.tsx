@@ -3,7 +3,8 @@ import { useContext, useEffect } from "react";
 import { formatDate } from "../Helpers";
 import { styled } from "../../stitches.config";
 import DeleteInvoices from "./invoiceAction/DeleteInvoices";
-import InvoiceEdit from "./invoiceAction/InvoiceEdit";
+import EditInvoices from "./invoiceAction/EditInvoices";
+import PaidInvoices from "./invoiceAction/PaidInvoices";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
@@ -64,11 +65,13 @@ export default function InvoiceList() {
                 <InvoiceCardHeader>
                     {invoice.patient.name}
                     <DeleteInvoices id={invoice.id} />
-                    <InvoiceEdit  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
+                    <EditInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
+                    <PaidInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name} paidProp={invoice.paid}/>
                 </InvoiceCardHeader>
                 <InvoiceCardLine>
                   <p>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
                   <p>{formatDate(new Date(invoice.date))}</p>
+                  <p>{invoice.paid ? 'Pago' : 'Pendente'}</p>
                 </InvoiceCardLine>
               </CardInvoice>
             )

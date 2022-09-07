@@ -6,8 +6,9 @@ import DataInput from "./form/DataInput";
 import { styled } from '../../stitches.config';
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
-import ToastAddInvoice from './ToastAddInvoice';
+import ToastInvoice from './ToastInvoice';
 import UserContext from 'Context/UserContext';
+import { currencyMask } from 'Helpers/index';
 
 
 const Button = styled('button', {
@@ -153,9 +154,10 @@ const InvoiceAdd = () => {
   };
 
   const handleChange = (value: string) => {
-    const formatAmount = value.replace(/[^\d\,.]/g, "").replace(",", ".")
-    setAmountNumber(parseFloat(formatAmount));
-    setAmount(value);
+    const mask = currencyMask(value);
+
+    setAmountNumber(parseFloat(mask.formatAmount));
+    setAmount(mask.value);
   }
 
   useEffect(() => {
@@ -165,6 +167,7 @@ const InvoiceAdd = () => {
       setFilteredInvoice(response?.data);
       setErrorMessage('');
       setLoading(loading);
+
       if(timerRef.current > 1) {
         setOpen(false);
         window.clearTimeout(timerRef.current);
@@ -201,7 +204,6 @@ const InvoiceAdd = () => {
               />
               <Input
                 placeholder="Valor"
-                type="number"
                 id="amount"
                 name="amount"
                 value={amount}
@@ -229,7 +231,7 @@ const InvoiceAdd = () => {
         </DialogContent>
       </DialogWrapper>
 
-      <ToastAddInvoice open={open} setOpen={setOpen} />
+      <ToastInvoice open={open} setOpen={setOpen} message="Cobrança adicionada com Sucesso!" />
     </Dialog>
   )
 }

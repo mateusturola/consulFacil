@@ -106,7 +106,7 @@ type Props = {
 const InvoiceEdit = ({patientProp, amountProp, dateProp, id }: Props) => {
   const [patient, setPatient] = useState(patientProp);
   const [amount, setAmount] = useState(amountProp);
-  const [amountNumber, setAmountNumber] = useState(0);
+  const [amountNumber, setAmountNumber] = useState(Number(amountProp));
   const [date, setDate] = useState<any>(new Date(dateProp));
 
   const [open, setOpen] = useState<any>(false);

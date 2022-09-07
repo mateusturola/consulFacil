@@ -164,11 +164,7 @@ export class InvoiceService {
                 id,
             },
             data: {
-                patient: {
-                    connect: {
-                        id: getPatient?.id,
-                    },
-                },
+                patientId: getPatient?.id,
                 amount,
                 date: dateFormatted,
                 paid: verifyPaid,

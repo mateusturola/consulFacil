@@ -158,13 +158,28 @@ export class InvoiceService {
             },
         });
 
+        let patientId = getPatient?.id;
+
+        if (!getPatient) {
+            const patientCreated = await prismaClient.patients.create({
+                data: {
+                    name: patient,
+                },
+            });
+
+            patientId = patientCreated?.id;
+        }
 
         await prismaClient.invoices.update({
             where: {
                 id,
             },
             data: {
-                patientId: getPatient?.id,
+                patient: {
+                    connect: {
+                        id: patientId,
+                    },
+                },
                 amount,
                 date: dateFormatted,
                 paid: verifyPaid,

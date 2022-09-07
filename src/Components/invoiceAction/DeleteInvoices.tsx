@@ -3,7 +3,7 @@ import Loading from 'Components/generic/Loading';
 import InvoicesContext from 'Context/InvoicesContext';
 import UserContext from 'Context/UserContext';
 import useAxios from 'Hooks/useAxios';
-import React, { useContext, useEffect } from 'react';
+import React, { ChangeEvent, useContext, useEffect } from 'react';
 import { styled } from '../../../stitches.config';
 
 type Props = {
@@ -48,7 +48,7 @@ const DeleteInvoices = ({id}:Props) => {
   }, [error, response, loading]);
 
 
-  const handleClick = (e) => {
+  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     sendData();
     setLoading(true);

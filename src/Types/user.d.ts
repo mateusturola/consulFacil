@@ -1,7 +1,10 @@
 export type UserContextType = {
   token: string,
   setToken: (token: string) => void,
-  user: string,
+  user: {
+    name: string,
+    email: string,
+  },
   setUser:  (user: any) => void,
   isLogin: boolean,
   setIsLogin:  (isLogin: boolean) => void,

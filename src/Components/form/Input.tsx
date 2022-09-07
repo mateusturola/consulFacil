@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { styled } from '@stitches/react';
 
 type InputProps = {
-  type: string,
+  type?: string,
   id: string,
   name: string,
   placeholder?: string,
@@ -26,6 +26,7 @@ const InputStyled = styled('input', {
 });
 
 const Input = ({type, id, placeholder, value, onChange}: InputProps) => {
+  type = type || 'text';
   return (
     <InputStyled type={type} id={id} placeholder={placeholder}  value={value} onChange={onChange}/>
 )

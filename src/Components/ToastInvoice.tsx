@@ -12,7 +12,7 @@ const ToastInvoice = ({open, setOpen, message}: ToastAddProps) => {
     <ToastProvider swipeDirection="right">
       <Toast open={open} onOpenChange={setOpen}>
         <ToastTitle>{message}</ToastTitle>
-        <ToastAction asChild altText="Goto schedule to undo">
+        <ToastAction asChild altText={message}>
           <Cross2Icon />
         </ToastAction>
       </Toast>

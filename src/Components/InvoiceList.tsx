@@ -2,8 +2,8 @@ import InvoicesContext from "../Context/InvoicesContext";
 import { useContext, useEffect } from "react";
 import { formatDate } from "../Helpers";
 import { styled } from "../../stitches.config";
-import Loading from "./generic/Loading";
 import DeleteInvoices from "./invoiceAction/DeleteInvoices";
+import InvoiceEdit from "./invoiceAction/InvoiceEdit";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
@@ -64,6 +64,7 @@ export default function InvoiceList() {
                 <InvoiceCardHeader>
                     {invoice.patient.name}
                     <DeleteInvoices id={invoice.id} />
+                    <InvoiceEdit  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
                 </InvoiceCardHeader>
                 <InvoiceCardLine>
                   <p>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>

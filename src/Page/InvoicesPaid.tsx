@@ -10,6 +10,7 @@ import Loading from 'Components/generic/Loading';
 import UserContext from 'Context/UserContext';
 import { Link } from 'react-router-dom';
 import IsLoginMessage from 'Page/IsLoginMessage';
+import InvoiceListPaid from 'Components/InvoiceListPaid';
 
 const Main = styled('main', {
   padding: '20px',
@@ -19,7 +20,7 @@ const Main = styled('main', {
 })
 
 
-export default function Invoices() {
+export default function InvoicesPaid() {
   const { setInvoices, setLoading} = useContext(InvoicesContext);
   const {token, isLogin} = useContext(UserContext);
 
@@ -45,12 +46,11 @@ export default function Invoices() {
   } else {
       return (
     <Main>
-      <Title>Cobranças Pendente</Title>
+      <Title>Cobranças Pagas</Title>
       {!isLogin && loading ? <Loading /> : ( 
         <>
           <InvoicesNav />
-          <SummaryInvoices />
-          <InvoiceList />
+          <InvoiceListPaid />
         </>
       )}
     </Main>

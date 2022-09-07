@@ -66,7 +66,7 @@ const InvoiceAction = styled('div', {
     gap: '5px',
 });
 
-export default function InvoiceList() {
+export default function InvoiceListPaid() {
   const { invoices, filteredInvoice, loading, errorMessage } = useContext(InvoicesContext);
 
   const invoiceList = filteredInvoice ? filteredInvoice : invoices;
@@ -76,7 +76,7 @@ export default function InvoiceList() {
         {errorMessage && <p>{errorMessage}</p>}
 
         { !errorMessage && invoiceList && invoiceList.map((invoice) => {
-          if(!invoice.paid) {
+          if(invoice.paid) {
             return(
               <CardInvoice key={invoice.id}>
                 <InvoiceCardHeader>

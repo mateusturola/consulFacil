@@ -57,7 +57,11 @@ export const Nav = () => {
           </TitleH3>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link to="/invoices">Financeiro</Link>
+            <Link to="/invoices">Cobraças Pendentes</Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <Link to="/invoices/paid">Cobraças Pagas</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>

@@ -57,11 +57,11 @@ export const Nav = () => {
           </TitleH3>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link to="/invoices">Cobraças Pendentes</Link>
+            <Link to="/invoices">Faturas Pendentes</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link to="/invoices/paid">Cobraças Pagas</Link>
+            <Link to="/invoices/paid">Faturas Pagas</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>

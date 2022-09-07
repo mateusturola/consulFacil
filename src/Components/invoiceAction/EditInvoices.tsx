@@ -200,9 +200,9 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
       <DialogWrapper>
         <DialogContent>
           <DialogText>
-            <DialogTitle>Editar Cobrança</DialogTitle>
+            <DialogTitle>Editar Fatura</DialogTitle>
             <DialogDescription>
-              Altere os dados abaixo para editar uma nova cobrança.
+              Altere os dados abaixo para editar uma nova fatura.
             </DialogDescription>
           </DialogText>
             <Flex>
@@ -243,7 +243,7 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
         </DialogContent>
       </DialogWrapper>
 
-      <ToastInvoice open={open} setOpen={setOpen} message="Cobrança editada com Sucesso!" />
+      <ToastInvoice open={open} setOpen={setOpen} message="Fatura editada com Sucesso!" />
     </Dialog>
   )
 }

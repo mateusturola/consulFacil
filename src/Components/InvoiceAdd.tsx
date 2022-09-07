@@ -183,14 +183,14 @@ const InvoiceAdd = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button > <PlusIconIcon /> Adicionar Cobrança</Button>
+        <Button > <PlusIconIcon /> Adicionar Fatura</Button>
       </DialogTrigger>
       <DialogWrapper>
         <DialogContent>
           <DialogText>
-            <DialogTitle>Adicionar Cobrança</DialogTitle>
+            <DialogTitle>Adicionar Fatura</DialogTitle>
             <DialogDescription>
-              Preencha os dados abaixo para cadastar uma nova cobrança.
+              Preencha os dados abaixo para cadastar uma nova fatura.
             </DialogDescription>
           </DialogText>
             <Flex>
@@ -231,7 +231,7 @@ const InvoiceAdd = () => {
         </DialogContent>
       </DialogWrapper>
 
-      <ToastInvoice open={open} setOpen={setOpen} message="Cobrança adicionada com Sucesso!" />
+      <ToastInvoice open={open} setOpen={setOpen} message="Fatura adicionada com Sucesso!" />
     </Dialog>
   )
 }

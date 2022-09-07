@@ -46,7 +46,7 @@ export default function InvoicesPaid() {
   } else {
       return (
     <Main>
-      <Title>Cobranças Pagas</Title>
+      <Title>Faturas Pagas</Title>
       {!isLogin && loading ? <Loading /> : ( 
         <>
           <InvoicesNav />

@@ -23,7 +23,11 @@ function InvoicesProvider({ children }: InvoicesProviderProps) {
     const invoiceList = filteredInvoice ? filteredInvoice : invoices;
 
     const sum = invoiceList.reduce((acc, invoice) => {
-      return acc + invoice.amount;
+      if (!invoice.paid) {
+        return acc + invoice.amount;
+      } else {
+        return acc;
+      }
     }
     , 0);
 

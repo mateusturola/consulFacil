@@ -45,7 +45,7 @@ export default function Invoices() {
   } else {
       return (
     <Main>
-      <Title>Cobranças Pendente</Title>
+      <Title>Faturas Pendente</Title>
       {!isLogin && loading ? <Loading /> : ( 
         <>
           <InvoicesNav />

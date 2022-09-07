@@ -48,7 +48,7 @@ const DeleteInvoices = ({id}:Props) => {
   }, [error, response, loading]);
 
 
-  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     sendData();
     setLoading(true);

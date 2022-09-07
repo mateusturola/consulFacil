@@ -51,7 +51,7 @@ const PaidInvoices = ({patientProp, amountProp, dateProp, id, paidProp }: Props)
     }
   } , [response, error, loading ]);
 
-  const handleClick = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
     sendData();
     setLoading(true);

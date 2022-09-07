@@ -4,7 +4,10 @@ import { UserContextType } from 'Types/user';
 const initialState = {
   token: '',
   setToken: () => {},
-  user: '',
+  user: {
+    name: '',
+    email: '',
+  },
   setUser:  () => {},
   isLogin: false,
   setIsLogin:  () => {},

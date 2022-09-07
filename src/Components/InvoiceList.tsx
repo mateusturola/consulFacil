@@ -3,6 +3,7 @@ import { useContext, useEffect } from "react";
 import { formatDate } from "../Helpers";
 import { styled } from "../../stitches.config";
 import Loading from "./generic/Loading";
+import DeleteInvoices from "./invoiceAction/DeleteInvoices";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
@@ -60,7 +61,10 @@ export default function InvoiceList() {
 
         { !errorMessage && invoiceList && invoiceList.map((invoice) => (
               <CardInvoice key={invoice.id}>
-                <InvoiceCardHeader>{invoice.patient.name}</InvoiceCardHeader>
+                <InvoiceCardHeader>
+                    {invoice.patient.name}
+                    <DeleteInvoices id={invoice.id} />
+                </InvoiceCardHeader>
                 <InvoiceCardLine>
                   <p>{invoice.amount.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</p>
                   <p>{formatDate(new Date(invoice.date))}</p>

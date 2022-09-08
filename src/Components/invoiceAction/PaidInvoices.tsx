@@ -48,8 +48,9 @@ const PaidInvoices = ({patientProp, amountProp, dateProp, id, paidProp }: Props)
       setLoading(false);
     } else if (error) {
       setErrorMessage(error.response?.data.message);
+      setLoading(false);
     }
-  } , [error, loading ]);
+  } , [response, error, loading ]);
 
   const handleClick = (e: any) => {
     e.preventDefault();

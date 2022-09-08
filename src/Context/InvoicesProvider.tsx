@@ -13,16 +13,13 @@ type InvoicesProviderProps = {
 function InvoicesProvider({ children }: InvoicesProviderProps) {
 
   const [invoices, setInvoices] = useState<IInvoice[]>([]);
-  const [filteredInvoice, setFilteredInvoice] = useState<IInvoice[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [disableClearFilter, setDisableClearFilter] = useState<boolean>(true);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [sumInvoices, setSumInvoices] = useState<number>(0);
   
   const sumInvoicesValue = () => {
-    const invoiceList = filteredInvoice ? filteredInvoice : invoices;
-
-    const sum = invoiceList.reduce((acc, invoice) => {
+    const sum = invoices.reduce((acc, invoice) => {
       if (!invoice.paid) {
         return acc + invoice.amount;
       } else {
@@ -36,12 +33,12 @@ function InvoicesProvider({ children }: InvoicesProviderProps) {
   };
   
   useEffect(() => {
-    if (invoices || filteredInvoice) {
+    if (invoices || invoices) {
       sumInvoicesValue();
     }
-  }, [filteredInvoice, invoices]);
+  }, [invoices, invoices]);
 
-  const contextValue = { invoices, setInvoices, filteredInvoice, setFilteredInvoice, loading, setLoading, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage, sumInvoices, setSumInvoices };
+  const contextValue = { invoices, setInvoices, loading, setLoading, disableClearFilter, setDisableClearFilter, errorMessage, setErrorMessage, sumInvoices, setSumInvoices };
 
   return (
     <InvoicesContext.Provider value={contextValue}>

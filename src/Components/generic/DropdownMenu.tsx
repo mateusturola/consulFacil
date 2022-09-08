@@ -73,7 +73,7 @@ const itemStyles = {
   all: 'unset',
   fontSize: 15,
   lineHeight: 1,
-  color: 'highlight',
+  color: '#134559',
   borderRadius: 3,
   display: 'flex',
   alignItems: 'center',
@@ -82,6 +82,11 @@ const itemStyles = {
   position: 'relative',
   paddingLeft: 25,
   userSelect: 'none',
+  
+  '&:hover': {
+    color: '#5A8392',
+    backgroundColor: '#f5f5f5',
+  },
 
   '&[data-disabled]': {
     color: 'gray600',
@@ -111,16 +116,6 @@ const titleH3 = {
   position: 'relative',
   userSelect: 'none',
   fontWeight: 700,
-
-  '&[data-disabled]': {
-    color: 'gray600',
-    pointerEvents: 'none',
-  },
-
-  '&[data-highlighted]': {
-    backgroundColor: 'secondary',
-    color: 'primary',
-  },
 };
 
 const StyledItem = styled(DropdownMenuPrimitive.Item, { ...itemStyles });
@@ -144,7 +139,7 @@ const StyledLabel = styled(DropdownMenuPrimitive.Label, {
 
 const StyledSeparator = styled(DropdownMenuPrimitive.Separator, {
   height: 0.5,
-  backgroundColor: 'gray',
+  backgroundColor: '#e5e5e5',
   margin: 5,
 });
 

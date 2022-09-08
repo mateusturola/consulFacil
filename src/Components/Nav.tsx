@@ -52,9 +52,11 @@ export const Nav = () => {
         </DropdownMenuTrigger>
 
         <DropdownMenuContent sideOffset={5}>
-          <TitleH3>
-            Olá, {user.name}
-          </TitleH3>
+          <DropdownMenuItem>
+            <TitleH3>
+              Olá, {user.name}
+            </TitleH3>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link to="/invoices">Faturas Pendentes</Link>

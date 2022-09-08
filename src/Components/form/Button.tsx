@@ -36,6 +36,10 @@ const ButtonStyle = styled('button', {
     pointerEvents: 'none',
   },
 
+  '@bp2': {
+    width: '100%',
+  },
+
   variants: {
     color: {
       line: {
@@ -46,6 +50,13 @@ const ButtonStyle = styled('button', {
         '&:hover': {
           backgroundColor: '#5A8392',
           color: '#f1f1f1',
+        },
+      },
+      login: {
+        width: '113%',
+  
+        '@bp2': {
+          width: '103%',
         },
       },
     },

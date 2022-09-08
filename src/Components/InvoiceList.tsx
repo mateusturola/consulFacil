@@ -5,6 +5,7 @@ import { styled } from "../../stitches.config";
 import DeleteInvoices from "./invoiceAction/DeleteInvoices";
 import EditInvoices from "./invoiceAction/EditInvoices";
 import PaidInvoices from "./invoiceAction/PaidInvoices";
+import Loading from "./generic/Loading";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
@@ -67,15 +68,15 @@ const InvoiceAction = styled('div', {
 });
 
 export default function InvoiceList() {
-  const { invoices, filteredInvoice, loading, errorMessage } = useContext(InvoicesContext);
-
-  const invoiceList = filteredInvoice ? filteredInvoice : invoices;
+  const { invoices, loading, errorMessage } = useContext(InvoicesContext);
 
   return (
     <InvoicesList className="invoice-list">
         {errorMessage && <p>{errorMessage}</p>}
 
-        { !errorMessage && invoiceList && invoiceList.map((invoice) => {
+        {loading && <Loading />}
+
+        {!errorMessage && invoices && invoices.map((invoice) => {
           if(!invoice.paid) {
             return(
               <CardInvoice key={invoice.id}>

@@ -12,12 +12,10 @@ type UserProviderProps = {
 function UserProvider({ children }: UserProviderProps) {
   const [tokenLocal] = useLocalStorage('token', '');
   const [isLoginLocal] = useLocalStorage('isLogin', false);
-
-  console.log('tokenLocal', typeof tokenLocal, tokenLocal, tokenLocal === '');
-  console.log('isLoginLocal', typeof isLoginLocal, isLoginLocal);
+  const [userData] = useLocalStorage('userData', false);
 
   const [token, setToken] = useState<string>(tokenLocal !== '' ? tokenLocal : '');
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<any>(userData);
   const [isLogin, setIsLogin] = useState<boolean>(tokenLocal !== '');
   const [errorMessage, setErrorMessage] = useState<string>('');
 

@@ -119,7 +119,7 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
     return () => clearTimeout(timerRef.current);
   }, []);
 
-  const { setFilteredInvoice, setLoading, setErrorMessage, loading: StateLoading } = useContext(InvoicesContext);
+  const { setInvoices, setLoading, setErrorMessage, loading: StateLoading } = useContext(InvoicesContext);
   const {token} = useContext(UserContext);
 
   const url = `/invoice/${id}`;
@@ -171,12 +171,11 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
   }
 
   useEffect(() => {
-    if (error) {
-      setErrorMessage(error.response?.data.message);
-    } else {
-      setFilteredInvoice(response?.data);
+    if(response?.data) {
+      setInvoices(response?.data);
       setErrorMessage('');
       setLoading(false);
+
       if(timerRef.current > 1) {
         setOpen(false);
         window.clearTimeout(timerRef.current);
@@ -186,6 +185,8 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
       }
 
       timerRef.current = timerRef.current + 1
+    } else if (error) {
+      setErrorMessage(error.response?.data.message);
     }
   } , [response, error, loading ]);
 

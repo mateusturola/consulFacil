@@ -35,6 +35,7 @@ const Login = () => {
 
   const [tokenLocal, setTokenLocal] = useLocalStorage('token', '');
   const [isLoginLocal, setIsLoginLocal] = useLocalStorage('isLogin', false);
+  const [userData, setUserData] = useLocalStorage('userData', {});
 
   let navigate = useNavigate();
 
@@ -55,7 +56,9 @@ const Login = () => {
     } else {
       setToken(response?.data.token);
       setUser(response?.data.user);
+      setUserData(response?.data.user);
       setTokenLocal(response?.data.token);
+
 
       if(response?.status === 200) {
         setIsLogin(true);
@@ -95,7 +98,7 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button style="line" OnClick={() => handleSubmit()}>
+        <Button style="login" OnClick={() => handleSubmit()}>
           Login
         </Button>
         <TooltipLogin />

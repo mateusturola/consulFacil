@@ -1,14 +1,10 @@
 import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
 import { useContext, useEffect } from 'react';
-import InvoiceList from 'Components/InvoiceList';
 import { Title } from 'Components/generic/Title';
 import { styled } from '../../stitches.config';
-import { SummaryInvoices } from 'Components/SummaryInvoices';
-import InvoicesNav from 'Components/InvoiceNav';
 import Loading from 'Components/generic/Loading';
 import UserContext from 'Context/UserContext';
-import { Link } from 'react-router-dom';
 import IsLoginMessage from 'Page/IsLoginMessage';
 import InvoiceListPaid from 'Components/InvoiceListPaid';
 
@@ -18,6 +14,16 @@ const Main = styled('main', {
   flexDirection: 'column',
   gap: '20px',
 })
+
+const Col = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+  width: "100%",
+  margin: "0 auto",
+  maxWidth: "1080px",
+});
+
 
 
 export default function InvoicesPaid() {
@@ -46,12 +52,11 @@ export default function InvoicesPaid() {
   } else {
       return (
     <Main>
-      <Title>Faturas Pagas</Title>
       {!isLogin && loading ? <Loading /> : ( 
-        <>
-          <InvoicesNav />
-          <InvoiceListPaid />
-        </>
+          <Col>
+          <Title>Faturas Pagas</Title>
+            <InvoiceListPaid />
+          </Col>
       )}
     </Main>
   );

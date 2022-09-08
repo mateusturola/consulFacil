@@ -11,7 +11,12 @@ const InvoicesList =  styled('section', {
   flexDirection: 'column',
   gap: '10px',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
+  flexWrap: 'wrap',
+
+  '@bp2': {
+    flexDirection: 'row',
+  },
 });
 
 const CardInvoice = styled('div', {
@@ -30,7 +35,11 @@ const CardInvoice = styled('div', {
       background: '#e6e6e6',
       border: '1px solid #cacaca',
     },
-})
+
+    '@bp2': {
+      width: '32%',
+    },
+});
 
 const InvoiceCardHeader = styled('h2', {
   fontSize: '1.1rem',
@@ -42,6 +51,7 @@ const InvoiceCardHeader = styled('h2', {
   justifyContent: 'space-between',
   alignItems: 'center',
 })
+
 const InvoiceCardList = styled('p', {
   border: '1px solid #aeaeae',
   padding: '1px 15px',
@@ -67,15 +77,13 @@ const InvoiceAction = styled('div', {
 });
 
 export default function InvoiceListPaid() {
-  const { invoices, filteredInvoice, loading, errorMessage } = useContext(InvoicesContext);
-
-  const invoiceList = filteredInvoice ? filteredInvoice : invoices;
+  const { invoices, loading, errorMessage } = useContext(InvoicesContext);
 
   return (
     <InvoicesList className="invoice-list">
         {errorMessage && <p>{errorMessage}</p>}
 
-        { !errorMessage && invoiceList && invoiceList.map((invoice) => {
+        { !errorMessage && invoices && invoices.map((invoice) => {
           if(invoice.paid) {
             return(
               <CardInvoice key={invoice.id}>

@@ -97,7 +97,7 @@ const Form = styled("div", {
 });
 
 const InvoicesFilter = () => {
-  const { setFilteredInvoice, setLoading, setDisableClearFilter, setErrorMessage } = useContext(InvoicesContext);
+  const { setInvoices, setLoading, setDisableClearFilter, setErrorMessage } = useContext(InvoicesContext);
   const {token} = useContext(UserContext);
 
   const [patient, setPatient] = useState("");
@@ -130,12 +130,12 @@ const InvoicesFilter = () => {
   };
 
   useEffect(() => {
-    if (error) {
-      setErrorMessage(error.response?.data.message);
-    } else {
-      setFilteredInvoice(response?.data);
+    if (response?.data) {
+      setInvoices(response?.data);
       setErrorMessage('');
       setLoading(loading);
+    } else if (error) {
+      setErrorMessage(error.response?.data.message);
     }
   } , [response, error, loading ]);
 

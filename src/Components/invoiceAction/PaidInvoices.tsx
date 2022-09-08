@@ -26,7 +26,7 @@ const ButtonDelete = styled('button', {
 
 const PaidInvoices = ({patientProp, amountProp, dateProp, id, paidProp }: Props) => {
 
-  const { setFilteredInvoice, setLoading, setErrorMessage, loading: StateLoading } = useContext(InvoicesContext);
+  const { setInvoices, setLoading, setErrorMessage, loading: StateLoading } = useContext(InvoicesContext);
   const { token } = useContext(UserContext);
 
   const url = `/invoice/${id}`;
@@ -42,14 +42,14 @@ const PaidInvoices = ({patientProp, amountProp, dateProp, id, paidProp }: Props)
   });
 
   useEffect(() => {
-    if (error) {
-      setErrorMessage(error.response?.data.message);
-    } else {
-      setFilteredInvoice(response?.data);
+    if (response?.data) {
+      setInvoices(response?.data);
       setErrorMessage('');
       setLoading(false);
+    } else if (error) {
+      setErrorMessage(error.response?.data.message);
     }
-  } , [response, error, loading ]);
+  } , [error, loading ]);
 
   const handleClick = (e: any) => {
     e.preventDefault();

@@ -15,8 +15,6 @@ export type InvoiceContextType = {
   setInvoices: (invoices: IInvoice[]) => void,
   loading: boolean,
   setLoading: (loading: boolean) => void,
-  filteredInvoice: IInvoice[],
-  setFilteredInvoice: (filteredInvoice: IInvoice[]) => void,
   errorMessage: string,
   setErrorMessage: (errorMessage: string) => void,
   disableClearFilter: boolean,

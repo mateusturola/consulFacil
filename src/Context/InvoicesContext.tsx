@@ -4,8 +4,6 @@ import { InvoiceContextType } from 'Types/invoice';
 const initialState = {
   invoices: [],
   setInvoices: () => {},
-  filteredInvoice: [],
-  setFilteredInvoice: () => {},
   loading: false,
   setLoading: () => {},
   disableClearFilter: true,

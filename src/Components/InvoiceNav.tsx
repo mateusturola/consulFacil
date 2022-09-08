@@ -21,20 +21,26 @@ const FlexLine = styled('div', {
 
 
 export default function InvoicesNav() {
-  const { invoices, disableClearFilter, setDisableClearFilter, setFilteredInvoice, setErrorMessage} = useContext(InvoicesContext);
+  const { invoices, disableClearFilter, setDisableClearFilter, setInvoices, setErrorMessage} = useContext(InvoicesContext);
 
 const clearForm = () => {
-  setFilteredInvoice(invoices);
+  setInvoices(invoices);
   setDisableClearFilter(true);
   setErrorMessage('');
 };
 
 
   return (
-    <FlexLine>
-      <InvoiceAdd />
-      <InvoicesFilter />
-      {!disableClearFilter && <Button OnClick={() => clearForm()}>Limpar Filtros</Button>}
-    </FlexLine>
+    <>
+      <FlexLine>
+        <InvoiceAdd />
+        <InvoicesFilter />
+      </FlexLine>
+      {!disableClearFilter &&
+        <FlexLine>
+            <Button OnClick={() => clearForm()}>Limpar Filtros</Button>
+        </FlexLine>
+      }
+    </>
   );
 }

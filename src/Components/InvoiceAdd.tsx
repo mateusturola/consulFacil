@@ -1,7 +1,7 @@
 import { Cross2Icon, PlusIcon } from '@radix-ui/react-icons';
 import { DialogText, Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogWrapper } from "./generic/Dialog";
 import Input from "./form/Input";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DataInput from "./form/DataInput";
 import { styled } from '../../stitches.config';
 import useAxios from 'Hooks/useAxios';
@@ -98,16 +98,8 @@ const InvoiceAdd = () => {
   const [amountNumber, setAmountNumber] = useState(0);
   const [date, setDate] = useState<any>(null);
 
-  const [open, setOpen] = useState<any>(false);
-  const timerRef = useRef(0);
-
-  useEffect(() => {
-    return () => clearTimeout(timerRef.current);
-  }, []);
-
-  const { setFilteredInvoice, setLoading, setErrorMessage } = useContext(InvoicesContext);
+  const { setInvoices, setLoading, setErrorMessage } = useContext(InvoicesContext);
   const {token} = useContext(UserContext);
-
 
   const { response, loading, error, sendData, setError } = useAxios({
     method: "post",
@@ -161,22 +153,12 @@ const InvoiceAdd = () => {
   }
 
   useEffect(() => {
-    if (error) {
-      setErrorMessage(error.response?.data.message);
-    } else {
-      setFilteredInvoice(response?.data);
+    if (response?.data) {
+      setInvoices(response?.data);
       setErrorMessage('');
-      setLoading(loading);
-
-      if(timerRef.current > 1) {
-        setOpen(false);
-        window.clearTimeout(timerRef.current);
-        timerRef.current = window.setTimeout(() => {
-          setOpen(true);
-        }, 100);
-      }
-
-      timerRef.current = timerRef.current + 1
+      setLoading(false);
+    } else if(error) {
+      setErrorMessage(error.response?.data.message);
     }
   } , [response, error, loading ]);
 
@@ -230,8 +212,6 @@ const InvoiceAdd = () => {
           </DialogClose>
         </DialogContent>
       </DialogWrapper>
-
-      <ToastInvoice open={open} setOpen={setOpen} message="Fatura adicionada com Sucesso!" />
     </Dialog>
   )
 }

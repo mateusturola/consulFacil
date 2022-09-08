@@ -3,7 +3,7 @@ import Loading from 'Components/generic/Loading';
 import InvoicesContext from 'Context/InvoicesContext';
 import UserContext from 'Context/UserContext';
 import useAxios from 'Hooks/useAxios';
-import React, { ChangeEvent, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { styled } from '../../../stitches.config';
 
 type Props = {
@@ -22,7 +22,7 @@ const ButtonDelete = styled('button', {
 
 const DeleteInvoices = ({id}:Props) => {
 
-  const {setLoading, setFilteredInvoice, loading: StateLoading} = useContext(InvoicesContext);
+  const {setLoading, setInvoices, loading: StateLoading} = useContext(InvoicesContext);
 
   const { token } = useContext(UserContext);
 
@@ -39,7 +39,7 @@ const DeleteInvoices = ({id}:Props) => {
 
   useEffect(() => {
     if (response?.data) {
-      setFilteredInvoice(response?.data);
+      setInvoices(response?.data);
       setLoading(false);
     } else if (error) {
       console.log(error);

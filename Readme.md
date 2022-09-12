@@ -32,7 +32,7 @@ Além disto é bom ter um editor para trabalhar com o código como [VSCode](http
 
 ### 🔏 Variáveis de ambiente
 
-```json
+```
 VITE_BACKEND_URL="Link para a API"[https://consulfacilapi.herokuapp.com/]
 ```
 

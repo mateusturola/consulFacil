@@ -38,6 +38,7 @@ const StyledWrapper = styled(DialogPrimitive.Content, {
   maxWidth: '500px',
   maxHeight: '85vh',
   padding: 25,
+  zIndex: 100,
   '@media (prefers-reduced-motion: no-preference)': {
     animation: `${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1)`,
   },

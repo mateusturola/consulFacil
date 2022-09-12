@@ -5,7 +5,7 @@ const WrapperLoading = styled("div", {
   display: "flex",
   width: "100vw",
   height: "100vh",
-  background: "rgb(0 0 0 / 2%)",
+  background: "rgb(19 69 89 / 0.26)",
   position: "fixed",
   top: 0,
   left: 0,
@@ -19,8 +19,8 @@ const Loading = () => {
       <MutatingDots
         height="100"
         width="100"
-        color="#134559"
-        secondaryColor="#134559"
+        color="#f6f6f6"
+        secondaryColor="#f6f6f6"
         radius="12.5"
         ariaLabel="loading"
         wrapperStyle={{}}

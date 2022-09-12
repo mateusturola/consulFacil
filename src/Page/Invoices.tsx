@@ -74,7 +74,7 @@ export default function Invoices() {
     return (
       <>
         <Main>
-        <Title>Faturas Pendente</Title>
+        <Title>Faturas Pendentes</Title>
           {!isLogin && loading && invoices !== undefined ? (
             <Loading />
           ) : (

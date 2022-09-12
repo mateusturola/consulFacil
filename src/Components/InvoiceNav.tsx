@@ -4,6 +4,8 @@ import { styled } from '../../stitches.config';
 import { Button } from 'Components/form/Button';
 import InvoicesFilter from 'Components/InvoicesFilter';
 import InvoiceAdd from 'Components/InvoiceAdd';
+import useAxios from 'Hooks/useAxios';
+import UserContext from 'Context/UserContext';
 
 const FlexLine = styled('div', {
   display: 'flex',
@@ -21,12 +23,27 @@ const FlexLine = styled('div', {
 
 
 export default function InvoicesNav() {
-  const { invoices, disableClearFilter, setDisableClearFilter, setInvoices, setErrorMessage} = useContext(InvoicesContext);
+  const { disableClearFilter, setDisableClearFilter, setInvoices, setErrorMessage} = useContext(InvoicesContext);
+  const {token} = useContext(UserContext);
+
+  const { response, loading, sendData, error } = useAxios({
+    method: "get",
+    url: "/invoice",
+    headers: {
+      accept: "*/*",
+      Authorization: token,
+    },
+  });
+
+  useEffect(() => {
+    sendData();
+  }, [])
 
 const clearForm = () => {
-  setInvoices(invoices);
+  sendData();
   setDisableClearFilter(true);
   setErrorMessage('');
+  setInvoices(response?.data);
 };
 
 

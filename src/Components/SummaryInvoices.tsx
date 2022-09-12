@@ -1,7 +1,6 @@
 import InvoicesContext from "Context/InvoicesContext";
 import { useContext } from "react";
 import { styled } from "../../stitches.config";
-import Loading from "./generic/Loading";
 
 
 const CardInvoice = styled('div', {
@@ -24,14 +23,30 @@ const CardInvoice = styled('div', {
   },
 })
 
+
+const TitleH3 =  styled('h3', {
+  all: 'unset',
+  fontSize: 20,
+  lineHeight: 1,
+  color: 'gray600',
+  borderRadius: 3,
+  display: 'flex',
+  alignItems: 'center',
+  height: 35,
+  position: 'relative',
+  userSelect: 'none',
+  fontWeight: 700,
+  color: '#134559',
+});
+
 export const SummaryInvoices = () => {
   const { sumInvoices, loading } = useContext(InvoicesContext);
   return (
     <CardInvoice>
       <p>Você tem</p>
-      <h3>{
+      <TitleH3>{
         sumInvoices.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-      }</h3>
+      }</TitleH3>
       <p>a receber.</p>
     </CardInvoice>
   )

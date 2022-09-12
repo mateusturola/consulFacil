@@ -1,9 +1,8 @@
 import { CheckCircledIcon } from '@radix-ui/react-icons';
-import Loading from 'Components/generic/Loading';
 import InvoicesContext from 'Context/InvoicesContext';
 import UserContext from 'Context/UserContext';
 import useAxios from 'Hooks/useAxios';
-import React, { ChangeEvent, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { styled } from '../../../stitches.config';
 
 type Props = {
@@ -16,11 +15,11 @@ type Props = {
 
 const IconButton = styled(CheckCircledIcon, {
   all: 'unset',
-  height: '18px',
-  width: '18px',
+  height: '20px',
+  width: '20px',
 });
 
-const ButtonDelete = styled('button', {
+const ButtonPaid = styled('button', {
   all: 'unset',
 });
 
@@ -60,8 +59,7 @@ const PaidInvoices = ({patientProp, amountProp, dateProp, id, paidProp }: Props)
 
   return  (
     <>
-      { StateLoading && <Loading />  }
-      <ButtonDelete type='button' onClick={handleClick}><IconButton /></ButtonDelete>
+      <ButtonPaid type='button' onClick={handleClick}><IconButton /></ButtonPaid>
     </>
   )
 }

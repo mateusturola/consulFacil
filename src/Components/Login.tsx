@@ -50,20 +50,25 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (error) {
+    if (error && !response) {
+      console.log('error', error);
+      console.log('response', response);
       setErrorMessage(error.response?.data.message);
       setIsLogin(false);
+      error.response?.data.message === "Validation failed" ? alert('Verifique seus dados e tente novamente.') : null;
+      setLoading(loading);
+
     } else {
       setToken(response?.data.token);
       setUser(response?.data.user);
       setUserData(response?.data.user);
       setTokenLocal(response?.data.token);
 
-
       if(response?.status === 200) {
         setIsLogin(true);
         setIsLoginLocal(true);
       }
+
       setErrorMessage('');
       setLoading(loading);
     }

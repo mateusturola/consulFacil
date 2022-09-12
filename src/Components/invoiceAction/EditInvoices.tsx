@@ -8,7 +8,6 @@ import useAxios from 'Hooks/useAxios';
 import InvoicesContext from 'Context/InvoicesContext';
 import ToastInvoice from '../ToastInvoice';
 import UserContext from 'Context/UserContext';
-import Loading from 'Components/generic/Loading';
 import { currencyMask } from 'Helpers/index';
 
 
@@ -89,11 +88,11 @@ const IconButton = styled('button', {
 });
 
 const EditIcon = styled(Pencil2Icon, {
-  height: '17px',
-  width: '17px',
+  height: '19px',
+  width: '19px',
 });
 
-const ButtonDelete = styled('button', {
+const ButtonEdit = styled('button', {
   all: 'unset',
 });
 
@@ -192,11 +191,11 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
 
   return (
     <Dialog>
-      { StateLoading && <Loading />  }
+      <ToastInvoice open={open} setOpen={setOpen} message="Fatura editada com Sucesso!" />
       <DialogTrigger asChild>
-        <ButtonDelete type='button'>
+        <ButtonEdit type='button'>
           <EditIcon />
-        </ButtonDelete>
+        </ButtonEdit>
       </DialogTrigger>
       <DialogWrapper>
         <DialogContent>
@@ -243,8 +242,6 @@ const EditInvoices = ({patientProp, amountProp, dateProp, id }: Props) => {
           </DialogClose>
         </DialogContent>
       </DialogWrapper>
-
-      <ToastInvoice open={open} setOpen={setOpen} message="Fatura editada com Sucesso!" />
     </Dialog>
   )
 }

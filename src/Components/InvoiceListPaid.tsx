@@ -5,6 +5,7 @@ import { styled } from "../../stitches.config";
 import DeleteInvoices from "./invoiceAction/DeleteInvoices";
 import EditInvoices from "./invoiceAction/EditInvoices";
 import PaidInvoices from "./invoiceAction/PaidInvoices";
+import Loading from "./generic/Loading";
 
 const InvoicesList =  styled('section', {
   display: 'flex',
@@ -73,7 +74,7 @@ const InvoiceAction = styled('div', {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '5px',
+    gap: '15px',
 });
 
 export default function InvoiceListPaid() {
@@ -83,6 +84,8 @@ export default function InvoiceListPaid() {
     <InvoicesList className="invoice-list">
         {errorMessage && <p>{errorMessage}</p>}
 
+        { loading && <Loading />  }
+
         { !errorMessage && invoices && invoices.map((invoice) => {
           if(invoice.paid) {
             return(
@@ -90,8 +93,8 @@ export default function InvoiceListPaid() {
                 <InvoiceCardHeader>
                     {invoice.patient.name}
                     <InvoiceAction>
-                      <DeleteInvoices id={invoice.id} />
                       <EditInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
+                      <DeleteInvoices id={invoice.id} />
                       <PaidInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name} paidProp={invoice.paid}/>
                     </InvoiceAction>
                 </InvoiceCardHeader>

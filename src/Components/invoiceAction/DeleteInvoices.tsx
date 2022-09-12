@@ -1,9 +1,8 @@
-import { IconJarLogoIcon, TrashIcon } from '@radix-ui/react-icons';
-import Loading from 'Components/generic/Loading';
+import { TrashIcon } from '@radix-ui/react-icons';
 import InvoicesContext from 'Context/InvoicesContext';
 import UserContext from 'Context/UserContext';
 import useAxios from 'Hooks/useAxios';
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { styled } from '../../../stitches.config';
 
 type Props = {
@@ -12,8 +11,8 @@ type Props = {
 
 const IconButton = styled(TrashIcon, {
   all: 'unset',
-  height: '18px',
-  width: '18px',
+  height: '20px',
+  width: '20px',
 });
 
 const ButtonDelete = styled('button', {
@@ -56,7 +55,6 @@ const DeleteInvoices = ({id}:Props) => {
 
   return  (
     <>
-      { StateLoading && <Loading />  }
       <ButtonDelete type='button' onClick={handleClick}><IconButton /></ButtonDelete>
     </>
   )

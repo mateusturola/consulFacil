@@ -64,7 +64,7 @@ const InvoiceAction = styled('div', {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    gap: '5px',
+    gap: '20px',
 });
 
 export default function InvoiceList() {
@@ -83,8 +83,8 @@ export default function InvoiceList() {
                 <InvoiceCardHeader>
                     {invoice.patient.name}
                     <InvoiceAction>
-                      <DeleteInvoices id={invoice.id} />
                       <EditInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name}/>
+                      <DeleteInvoices id={invoice.id} />
                       <PaidInvoices  id={invoice.id} amountProp={String(invoice.amount)} dateProp={invoice.date} patientProp={invoice.patient.name} paidProp={invoice.paid}/>
                     </InvoiceAction>
                 </InvoiceCardHeader>

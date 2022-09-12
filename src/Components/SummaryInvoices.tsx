@@ -28,7 +28,6 @@ const TitleH3 =  styled('h3', {
   all: 'unset',
   fontSize: 20,
   lineHeight: 1,
-  color: 'gray600',
   borderRadius: 3,
   display: 'flex',
   alignItems: 'center',

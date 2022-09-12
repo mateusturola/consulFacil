@@ -16,7 +16,3 @@ O Deploy da aplicação foi realizado no Heroku.
 [ConsulFácil - A Gestão do seu consultório na palma da sua mão](https://consulfacilapp.herokuapp.com/)
 
 Os arquivos e instruções relacionados ao Backend estão na [Branch Server](https://github.com/mateusturola/consulFacil/tree/server) e os do Frontend estão na [Branch Client](https://github.com/mateusturola/consulFacil/tree/client) neste repositório.
-
-[Backend](Geral%20a725edfb1ce748b78829ea1e0d8a4eab/Backend%201e04022ac04747b79b3e9a928acf6efc.md)
-
-[Frontend](Geral%20a725edfb1ce748b78829ea1e0d8a4eab/Frontend%20ec2c7cf9b27d474188ab2be0038aaa9b.md)

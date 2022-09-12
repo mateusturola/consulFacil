@@ -1,6 +1,7 @@
 [![LOGO](img/logo.png)](https://consulfacilapp.herokuapp.com/)
 
 [ConsulFácil - A Gestão do seu consultório na palma da sua mão](https://consulfacilapp.herokuapp.com/)
+[Documentação da API] (https://documenter.getpostman.com/view/20064154/VVdjZ4WS)
 
 # ConsulFácil - Backend
 
